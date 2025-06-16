@@ -1,0 +1,124 @@
+{% load static %}
+<style>
+    footer {
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    padding: 60px 0;
+}
+.footer_info {
+    width: 633px;
+}
+.footer_info ul {
+    margin-top: 20px;
+    line-height: 2;
+    list-style: none;
+}
+.footer_info ul li a {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.footer_info ul li a i {
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+
+@media (575px >= width) {
+    nav {
+        width: 100%;
+        padding: 10px;
+    }
+    .logo {
+        position: relative;
+        left: -8px;
+    }
+    .logo img {
+        width: 140px;
+        object-fit: contain;
+    }
+    .bars {
+        display: block;
+        order: -1;
+    }
+    nav ul {
+        display: none;
+    }
+    .log {
+        padding: 5px 20px;
+    }
+    #intro {
+        padding: 0;
+    }
+    .intro_info {
+        width: 100%;
+        padding: 0 20px;
+    }
+    .intro_info h1 {
+        font-size: 35px;
+    }
+    .intro_info hr {
+        width: 50px;
+        height: 3px;
+        margin: 10px auto;
+    }
+    .intro_info p {
+        font-size: 18px;
+    }
+    .my-logo {
+        bottom: 18px;
+        right: 10px;
+    }
+    .my-logo img {
+        width: 40px;
+    }
+    .my-logo {
+        width: 160px;
+        height: 40px;
+    }
+    .my-logo span {
+        font-size: 12px;
+        right: 10px;
+    }
+    .products {
+        width: 100%;
+        padding: 60px 20px;
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-row-gap: 16px;
+    }
+    .product_card {
+        width: 170px;
+    }
+    .product_card_info img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+    footer {
+        padding: 40px 20px;
+    }
+    .footer_info ul {
+        line-height: 1.5;
+    }
+}
+
+</style>
+ <footer>
+        <div class="footer_info">
+            <h3>Yordam</h3>
+            <ul>
+                <li><a href="#">Yetkazib berish</a></li>
+                <li><a href="#">Qaytarish shartlari</a></li>
+                <li><a href="#">Biz bilan bog`lanish</a></li>
+            </ul>
+        </div>
+        <div class="footer_info">
+            <h3>Bizni sahifalarimiz</h3>
+            <ul>
+                <li><a href="https://www.instagram.com/kiddyshoppy" target="_blank"><i class="fa-brands fa-square-instagram"></i> <span>Instagram</span></a></li>
+                <li><a href="https://t.me/kiddyshoppy" target="_blank"><i class="fa-brands fa-telegram"></i> <span>Telegram</span></a></li>
+            </ul>
+        </div>
+    </footer>

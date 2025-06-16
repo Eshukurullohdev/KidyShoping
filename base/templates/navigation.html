@@ -1,0 +1,107 @@
+{% load static %}
+<style>
+    nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 1140px;
+    padding: 10px 0;
+    margin: 0 auto;
+}
+
+.nav_left {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 170px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-right: 5px;
+}
+
+nav ul li a {
+    position: relative;
+    padding: 5px 15px;
+}
+
+nav ul li a::before {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    content: '';
+    width: 0%;
+    height: 2px;
+    background-color: crimson;
+    transition: 1s ease;
+}
+
+nav ul li a:hover:before {
+    width: 100%;
+    transform: translateX(-50%) scaleX(1);
+    transition: 1s ease;
+}
+
+.log {
+    position: relative;
+    padding: 10px 40px;
+    border: 2px solid #000
+}
+
+.log::before {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: -1;
+    transform: translateX(-50%) scaleX(0);
+    content: '';
+    width: 0%;
+    height: 100%;
+    background-color: crimson;
+    transition: 1s all ease;
+}
+
+.log:hover::before {
+    width: 100%;
+    transform: translateX(-50%) scaleX(1);
+    transition: 1s all ease;
+}
+
+.log i {
+    margin-left: 5px;
+}
+
+.example {
+    height: 100vh;
+    border: none;
+}
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: #000;
+}
+</style>
+   <nav>
+        <a class="logo" href="/">
+            <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
+        </a>
+        <ul>
+            <li><a href="/">Bosh sahifa</a></li>
+            <li><a href="#">O'g'il bolalar</a></li>
+            <li><a href="#">Qiz bolalar</a></li>
+            <li><a href="#">Chegirmalar %</a></li>
+        </ul>
+        <div class="nav_right">
+            <a href="#" class="log">
+                Kirish <i class="fa-solid fa-user"></i>
+            </a>
+        </div>
+    </nav>

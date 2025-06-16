@@ -1,0 +1,281 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    #intro {
+    position: relative;
+    height: 100vh;
+    text-align: center;
+    color: #fff;
+}
+.bg {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.my-logo {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 280px;
+    height: 70px;
+    background-color: #000;
+}
+.my-logo img {
+    position: absolute;
+    filter: drop-shadow(0 0 17px orange);
+}
+.my-logo span {
+    position: absolute;
+    right: 30px;
+    background: linear-gradient(90deg, #f58041, #ac795c 25.6%, #887064 41.58%, #716a69 56.98%, #61656b 69.44%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 500;
+    font-size: 20px;
+}
+.intro_info {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1140px;
+}
+
+.intro_info h1 {
+    text-transform: uppercase;
+    font-size: 70px;
+    line-height: 1.2;
+    letter-spacing: 2px;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.intro_info hr {
+    width: 100px;
+    height: 4px;
+    background-color: #fff;
+    border: none;
+    margin: 20px auto;
+}
+
+.intro_info p {
+    font-size: 25px;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.products {
+    width: 1291px;
+    margin: 0 auto;
+    padding-block: 60px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-row-gap: 24px;
+    grid-column-gap: 16px;
+}
+
+.product_card {
+    width: 310px;
+}
+
+.product_card_info img {
+    object-fit: cover;
+    object-position: 50%;
+    border-radius: 10px;
+}
+
+.product_card_info h4 {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #757575;
+    margin: 8px 0 5px;
+}
+
+.product_card_info h3 {
+    font-size: 14px;
+    font-weight: inherit;
+    line-height: 1.2;
+    min-height: 42px;
+}
+
+.product_card_info_price {
+    display: flex;
+    align-items: center;
+}
+
+.new_price {
+    font-weight: 700;
+    margin-inline-end: 5px;
+}
+
+.old_price {
+    font-size: 12px;
+    color: #757575;
+    text-decoration: line-through;
+}
+
+
+
+
+
+
+.logos {
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 20px 0;
+}
+.logos::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    z-index: 2;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), #fff);
+}
+.logos::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    z-index: 2;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff);
+}
+.logos:hover .logos-slide {
+    animation-play-state: paused;
+}
+.logos-slide {
+    display: inline-block;
+    animation: 30s scroll infinite linear;
+}
+
+.logos-slide img {
+    object-fit: contain;
+    height: 50px;
+    margin: 0 40px;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.logos:nth-child(2) {
+    position: absolute;
+    top: 20px;
+    left: 100%;
+}
+
+</style>
+   <section id="intro">
+        <div class="bg">
+            <iframe class="example" src='https://my.spline.design/glassmorphlandingpage-762152c08c6cec49b61ab07d41b62eb2/' frameborder='0' width='100%' height='100%'></iframe>
+        </div>
+        <div class="my-logo">
+            <img src="/static/img/my-logo.svg" alt="logo" width="80">
+            <span>Made by I.Olimov</span>
+        </div>
+        <div class="intro_info">
+            <h1>Bolajoningiz uchun eng yaxshi kiyimlar shu yerda!</h1>
+            <hr>
+            <p>KiddyShoppy – kichkintoyingizga mehr bilan tanlangan eng sifatli va shirin kiyimlar uyi! Chiroyli, qulay va ishonchli kiyimlarni biz bilan tanlang.</p>
+        </div>
+    </section>
+
+    <div class="logos">
+        <div class="logos-slide">
+            <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
+            <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
+            <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
+            <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
+            <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
+            <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
+            <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
+            <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
+        </div>                
+    </div>
+
+
+
+    <div class="products">
+
+        <div class="product_card">
+            <a href='outfit-sets.html'>
+                <div class="product_card_info">
+                    <img src="/static/img/card-info.webp" alt="baby-clothes" width="310" height="400">
+                    <h4>KiddyShoppy</h4>
+                    <h3>Baby 'Key To Mommy's Heart' Short Sleeve Bodysuit</h3>
+                    <div class="product_card_info_price">
+                        <p class="new_price">$5.00</p>
+                        <p class="old_price">$10.00*</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="product_card">
+            <a href='/outfit-sets.html'>
+                <div class="product_card_info">
+                    <img src="/static/img/card-info.webp" alt="baby-clothes" width="310" height="400">
+                    <h4>KiddyShoppy</h4>
+                    <h3>Baby 'Key To Mommy's Heart' Short Sleeve Bodysuit</h3>
+                    <div class="product_card_info_price">
+                        <p class="new_price">$5.00</p>
+                        <p class="old_price">$10.00*</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="product_card">
+            <a href='/outfit-sets'>
+                <div class="product_card_info">
+                    <img src="/static/img/card-info.webp" alt="baby-clothes" width="310" height="400">
+                    <h4>KiddyShoppy</h4>
+                    <h3>Baby 'Key To Mommy's Heart' Short Sleeve Bodysuit</h3>
+                    <div class="product_card_info_price">
+                        <p class="new_price">$5.00</p>
+                        <p class="old_price">$10.00*</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="product_card">
+            <a href='/outfit-sets'>
+                <div class="product_card_info">
+                    <img src="/static/img/card-info.webp" alt="baby-clothes" width="310" height="400">
+                    <h4>KiddyShoppy</h4>
+                    <h3>Baby 'Key To Mommy's Heart' Short Sleeve Bodysuit</h3>
+                    <div class="product_card_info_price">
+                        <p class="new_price">$5.00</p>
+                        <p class="old_price">$10.00*</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="product_card">
+            <a href='/outfit-sets'>
+                <div class="product_card_info">
+                    <img src="/static/img/card-info.webp" alt="baby-clothes" width="310" height="400">
+                    <h4>KiddyShoppy</h4>
+                    <h3>Baby 'Key To Mommy's Heart' Short Sleeve Bodysuit</h3>
+                    <div class="product_card_info_price">
+                        <p class="new_price">$5.00</p>
+                        <p class="old_price">$10.00*</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+{% endblock %}
