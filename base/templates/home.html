@@ -1,7 +1,32 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cookie&family=League+Spartan:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: "League Spartan", serif;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: #000;
+}
     #intro {
     position: relative;
     height: 100vh;
@@ -207,7 +232,7 @@
     <div class="products">
 
         <div class="product_card">
-            <a href='outfit-sets.html'>
+            <a href="{%  url 'detail' %}">
                 <div class="product_card_info">
                     <img src="/static/img/card-info.webp" alt="baby-clothes" width="310" height="400">
                     <h4>KiddyShoppy</h4>
@@ -219,57 +244,6 @@
                 </div>
             </a>
         </div>
-        <div class="product_card">
-            <a href='/outfit-sets.html'>
-                <div class="product_card_info">
-                    <img src="/static/img/card-info.webp" alt="baby-clothes" width="310" height="400">
-                    <h4>KiddyShoppy</h4>
-                    <h3>Baby 'Key To Mommy's Heart' Short Sleeve Bodysuit</h3>
-                    <div class="product_card_info_price">
-                        <p class="new_price">$5.00</p>
-                        <p class="old_price">$10.00*</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="product_card">
-            <a href='/outfit-sets'>
-                <div class="product_card_info">
-                    <img src="/static/img/card-info.webp" alt="baby-clothes" width="310" height="400">
-                    <h4>KiddyShoppy</h4>
-                    <h3>Baby 'Key To Mommy's Heart' Short Sleeve Bodysuit</h3>
-                    <div class="product_card_info_price">
-                        <p class="new_price">$5.00</p>
-                        <p class="old_price">$10.00*</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="product_card">
-            <a href='/outfit-sets'>
-                <div class="product_card_info">
-                    <img src="/static/img/card-info.webp" alt="baby-clothes" width="310" height="400">
-                    <h4>KiddyShoppy</h4>
-                    <h3>Baby 'Key To Mommy's Heart' Short Sleeve Bodysuit</h3>
-                    <div class="product_card_info_price">
-                        <p class="new_price">$5.00</p>
-                        <p class="old_price">$10.00*</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="product_card">
-            <a href='/outfit-sets'>
-                <div class="product_card_info">
-                    <img src="/static/img/card-info.webp" alt="baby-clothes" width="310" height="400">
-                    <h4>KiddyShoppy</h4>
-                    <h3>Baby 'Key To Mommy's Heart' Short Sleeve Bodysuit</h3>
-                    <div class="product_card_info_price">
-                        <p class="new_price">$5.00</p>
-                        <p class="old_price">$10.00*</p>
-                    </div>
-                </div>
-            </a>
-        </div>
+        
     </div>
 {% endblock %}
