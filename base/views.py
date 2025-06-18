@@ -5,3 +5,6 @@ def navigation(request):
 def home(request):
     return render(request, "home.html")
 
+def detail_clothes(request):
+    return render(request, "detail.html")
+
