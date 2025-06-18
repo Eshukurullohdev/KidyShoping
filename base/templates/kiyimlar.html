@@ -210,63 +210,29 @@
         left: 100%;
     }
 </style>
-<section id="intro">
-    <div class="bg">
-        <iframe class="example" src='https://my.spline.design/glassmorphlandingpage-762152c08c6cec49b61ab07d41b62eb2/'
-            frameborder='0' width='100%' height='100%'></iframe>
-    </div>
-    <div class="my-logo">
-        <img src="/static/img/my-logo.svg" alt="logo" width="80">
-        <span>Made by I.Olimov</span>
-    </div>
-    <div class="intro_info">
-        <h1>Bolajoningiz uchun eng yaxshi kiyimlar shu yerda!</h1>
-        <hr>
-        <p>KiddyShoppy – kichkintoyingizga mehr bilan tanlangan eng sifatli va shirin kiyimlar uyi! Chiroyli, qulay va
-            ishonchli kiyimlarni biz bilan tanlang.</p>
-    </div>
-</section>
 
-<div class="logos">
-    <div class="logos-slide">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
-    </div>
-</div>
+<body>
 
+    <div class="products">
 
-
-<div class="products">
-    {% for kiyim in kiyim %}
-    <div class="product_card">
-        <a href="{% url 'detail' kiyim.id %}">
-            <div class="product_card_info">
-                <img src="{{ kiyim.main_img.url }}" alt="baby-clothes" width="310" height="400">
-                <h4>KiddyShoppy</h4>
-                <h3>{{ kiyim.tavsifi }}</h3>
-                <div class="product_card_info_price">
-                    <p class="new_price">{{ kiyim.narhi }} uzs</p>
-                    {% if kiyim.skidkasi %}
-                    <p class="old_price">{{ kiyim.skidkasi }} uzs </p>
-                    {% else %}
-                    <span></span>
-                    {% endif %}
-                    {% if kiyim.chegirma_foizi > 0 %}
-                    <p style="color: green; font-size: 14px; margin-left: 5px; font-weight: bold;">
-                         Chegirma: {{ kiyim.chegirma_foizi }}%
-                    </p>
-                  
-                    {% endif %}
+        {% for kiyim in kiyimlar %}
+        <div class="product_card">
+            <a href="{% url 'detail' kiyim.id %}">
+                <div class="product_card_info">
+                    <img src="{{ kiyim.main_img.url }}" alt="baby-clothes" width="310" height="400">
+                    <h4>KiddyShoppy</h4>
+                    <h3>{{ kiyim.tavsifi }}</h3>
+                    <div class="product_card_info_price">
+                        <p class="new_price">{{ kiyim.narhi }} so'm</p>
+                        <p class="old_price">{{ kiyim.skidkasi }} so'm</p>
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
+        {% empty %}
+        <p>Bu toifada kiyimlar topilmadi.</p>
+        {% endfor %}
+    
     </div>
-    {% endfor %}
-</div>
+</body>
 {% endblock %}

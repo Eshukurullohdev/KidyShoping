@@ -1,214 +1,251 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
- <style>    @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body {
-    font-family: "Poppins", serif;
-}
-h1,
-h2,
-h3,
-h4 {
-    font-family: "League Spartan", serif;
-}
-.products {
-    padding-block: 60px;
-    display: flex;
-    justify-content: center;
-}
-.product_left {
-    display: grid;
-    grid-gap: 4px;
-    grid-template-columns: repeat(auto-fit, minmax(calc(50% - 4px), 1fr));
-    min-width: 855px;
-    margin-right: 20px;
-}
-.product_right_info {
-    position: sticky;
-    top: 0;
-    width: 420px;
-}
-.logo {
-    color: #000;
-}
-.product_right_info h3 {
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 1.3;
-    margin-block: 8px;
-}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-.style_title {
-    display: flex;
-}
+    body {
+        font-family: "Poppins", serif;
+    }
 
-.style-variants,
-.size-variants {
-    margin-block: 10px;
-}
-.product_right_info h5 {
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1.5;
-    margin-right: 5px;
-}
-.style_title p {
-    font-size: 14px;
-    line-height: 1.5;
-}
-.style-variants {
-    display: flex;
-    flex-wrap: wrap;
-}
-.style-variants div {
-    cursor: pointer;
-    width: 56px;
-    height: 48px;
-    background-color: #f6f6f6;
-    padding: 3px;
-    border: 1px solid #b0b0be;
-    border-radius: 12px;
-    margin: 0 10px 10px 0;
-}
-.style-variants div img {
-    object-fit: contain;
-    object-position: 50%;
-}
-.size-variants {
-    display: flex;
-    flex-wrap: wrap;
-    width: 419px;
-}
-.size-variants-examples {
-    cursor: pointer;
-    margin: 0 10px 10px 0;
-    width: 56px;
-    height: 48px;
-    background-color: #f6f6f6;
-    padding: 3px;
-    border: 1px solid #b0b0be;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.add_cart {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.add_cart_price {
-    display: flex;
-    align-items: flex-end;
-}
-.add_cart_price h6 {
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1;
-}
-.add_cart_price p {
-    font-size: 12px;
-    line-height: 1;
-    color: #5b5b5b;
-    text-decoration: line-through;
-    margin-left: 2px;
-}
-.add_cart a {
-    text-decoration: none;
-    text-transform: capitalize;
-    font-weight: 600;
-    line-height: 1.2;
-    border-radius: 8px;
-    background-color: #179dca;
-    color: #fff;
-    padding: 14px 77px;
-    display: inline-block;
-}
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family: "League Spartan", serif;
+    }
 
-.info {
-    background-color: #f0f0f0;
-    padding: 16px;
-    border-radius: 12px;
-    margin-top: 18px;
-}
-.info p {
-    font-size: 12px;
-    line-height: 2;
-}
-.info a {
-    color: #000;
-}
-.info p i {
-    margin-right: 5px;
-}
-.store {
-    font-weight: 700;
-    text-decoration: none;
-}
+    .products {
+        padding-block: 60px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .product_left {
+        display: grid;
+        grid-gap: 4px;
+        grid-template-columns: repeat(auto-fit, minmax(calc(50% - 4px), 1fr));
+        min-width: 855px;
+        margin-right: 20px;
+    }
+
+    .product_right_info {
+        position: sticky;
+        top: 0;
+        width: 420px;
+    }
+
+    .logo {
+        color: #000;
+    }
+
+    .product_right_info h3 {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.3;
+        margin-block: 8px;
+    }
+
+    .style_title {
+        display: flex;
+    }
+
+    .style-variants,
+    .size-variants {
+        margin-block: 10px;
+    }
+
+    .product_right_info h5 {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.5;
+        margin-right: 5px;
+    }
+
+    .style_title p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .style-variants {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .style-variants div {
+        cursor: pointer;
+        width: 56px;
+        height: 48px;
+        background-color: #f6f6f6;
+        padding: 3px;
+        border: 1px solid #b0b0be;
+        border-radius: 12px;
+        margin: 0 10px 10px 0;
+    }
+
+    .style-variants div img {
+        object-fit: contain;
+        object-position: 50%;
+    }
+
+    .size-variants {
+        display: flex;
+        flex-wrap: wrap;
+        width: 419px;
+    }
+
+    .size-variants-examples {
+        cursor: pointer;
+        margin: 0 10px 10px 0;
+        width: 56px;
+        height: 48px;
+        background-color: #f6f6f6;
+        padding: 3px;
+        border: 1px solid #b0b0be;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .add_cart {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .add_cart_price {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .add_cart_price h6 {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1;
+    }
+
+    .add_cart_price p {
+        font-size: 12px;
+        line-height: 1;
+        color: #5b5b5b;
+        text-decoration: line-through;
+        margin-left: 2px;
+    }
+
+    .add_cart a {
+        text-decoration: none;
+        text-transform: capitalize;
+        font-weight: 600;
+        line-height: 1.2;
+        border-radius: 8px;
+        background-color: #179dca;
+        color: #fff;
+        padding: 14px 77px;
+        display: inline-block;
+    }
+
+    .info {
+        background-color: #f0f0f0;
+        padding: 16px;
+        border-radius: 12px;
+        margin-top: 18px;
+    }
+
+    .info p {
+        font-size: 12px;
+        line-height: 2;
+    }
+
+    .info a {
+        color: #000;
+    }
+
+    .info p i {
+        margin-right: 5px;
+    }
+
+    .store {
+        font-weight: 700;
+        text-decoration: none;
+    }
 
 
-.details {
-    padding: 60px 0;
-    display: flex;
-    justify-content: center;
-}
-.details h3 {
-    font-weight: 500;
-    margin-bottom: 20px;
-}
-.details-left {
-    padding-right: 30px;
-    width:  648px;
-}
-.details-left p {
-    font-size: 14px;
-    margin-bottom: 30px;
-}
-.details-left ul {
-    font-size: 14px;
-    line-height: 1.8;
-    margin-left: 20px;
-}
-.details-right {
-    width: 647px;
-}
-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-}
-thead tr th {
-    padding: 12px 24px;
-    font-size: 14px;
-    font-weight: 700;
-}
-tbody tr:nth-child(odd) {
-    background-color: #f0f0f0;
-}
-tbody tr td {
-    font-size: 14px;
-    padding: 16px 24px;
-}
-tbody tr td:first-child {
-    font-weight: 600;
-}
-</style> 
-<body>     <div class="products">
+    .details {
+        padding: 60px 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .details h3 {
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+
+    .details-left {
+        padding-right: 30px;
+        width: 648px;
+    }
+
+    .details-left p {
+        font-size: 14px;
+        margin-bottom: 30px;
+    }
+
+    .details-left ul {
+        font-size: 14px;
+        line-height: 1.8;
+        margin-left: 20px;
+    }
+
+    .details-right {
+        width: 647px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+    }
+
+    thead tr th {
+        padding: 12px 24px;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: #f0f0f0;
+    }
+
+    tbody tr td {
+        font-size: 14px;
+        padding: 16px 24px;
+    }
+
+    tbody tr td:first-child {
+        font-weight: 600;
+    }
+</style>
+
+<body>
+   
+    <div class="products">
         <div class="product_left">
-            <img src="/static/img/bir.avif" alt="product-img" width="425" height="533">
-            <img src="/static/img/ikki.avif" alt="product-img" width="425" height="533">
-            <img src="/static/img/uch.avif" alt="product-img" width="425" height="533">
+            <img src="{{ kiyim.main_img.url }}" alt="product-img" width="425" height="533">
+            <img src="{{ kiyim.birinchi_img.url }}" alt="product-img" width="425" height="533">
+            <img src="{{ kiyim.ikkinchi_img.url }}" alt="product-img" width="425" height="533">
         </div>
         <div class="product_right">
             <div class="product_right_info">
                 <a class="logo" href="/">KiddyShoppy</a>
-                <h3>Baby Sweater Knit Cardigan</h3>
+                <h3>{{ kiyim.tavsifi }}</h3>
                 <div class="style">
                     <div class="style_title">
                         <h5>Style:</h5>
@@ -251,14 +288,16 @@ tbody tr td:first-child {
                 </div>
                 <div class="add_cart">
                     <div class="add_cart_price">
-                        <h6>$21.60</h6>
-                        <p>$36.00</p>
+                        <h6>{{ kiyim.narhi }} so'm</h6>
+                        <p>{{ kiyim.skidkasi }} so'm</p>
                     </div>
                     <a href="#">add to cart</a>
                 </div>
                 <div class="info">
-                    <p><i class="fa-solid fa-store"></i> <a class="store" href="#">Select a store</a> to see in store availability</p>
-                    <p><i class="fa-solid fa-arrows-rotate"></i> Returns available within 90 days. <a href="#">Returns Details</a></p>
+                    <p><i class="fa-solid fa-store"></i> <a class="store" href="#">Select a store</a> to see in store
+                        availability</p>
+                    <p><i class="fa-solid fa-arrows-rotate"></i> Returns available within 90 days. <a href="#">Returns
+                            Details</a></p>
                     <p><i class="fa-solid fa-truck-fast"></i> Free shipping on orders over $35</p>
                     <p><i class="fa-regular fa-star"></i> Earn more with Carter's Rewards®. <a href="#">Join Us</a></p>
                     <p><i class="fa-solid fa-shirt"></i> <a href="#">Product Details</a></p>
@@ -266,19 +305,20 @@ tbody tr td:first-child {
             </div>
         </div>
     </div>
-
+    
     <div class="details">
         <div class="details-left">
             <h3>Ushbu element haqida</h3>
-            <p>Ikki tomonlama fermuarlar va yoqimli bosma naqshlar bilan to'ldirilgan chaqaloq uchun ikkita yumshoq bo'lakni zaxiralang.</p>
+            <p>{{ kiyim.kiyim_haqida }}</p>
             <h3>Xususiyatlari :</h3>
             <ul>
                 <li>2-paket</li>
-                <li>Ikki tomonlama fermuarli dizayn chaqaloq bezi bezi almashtirilganda issiq va qulay bo'lib qoladi</li>
-                <li>Kichkina iyaklarni himoya qilish uchun xavfsizlik yorlig'i</li>
-                <li>Qog'ozli manjetlar va bo'yin chizig'i</li>
-                <li>O'rnatilgan oyoqlar, tutqichlar yo'q</li>
-                <li>Yangi tug'ilgan chaqaloqlar va tug'ilgan chaqaloqlar uchun buklanadigan manjetlar</li>
+                <li>{{ kiyim.birinchi_xususiyati }}
+                </li>
+                <li>{{ kiyim.ikkinchi_xususiyati }}</li>
+                <li>{{ kiyim.uchunchi_xususiyati }}</li>
+                <li>{{ kiyim.tortinchi_xususiyati }}</li>
+                <li>{{ kiyim.beshinchi_xususiyati }}</li>
             </ul>
         </div>
         <div class="details-right">
@@ -294,8 +334,8 @@ tbody tr td:first-child {
                 <tbody>
                     <tr>
                         <td>PRE</td>
-                        <td>43 - 46cm</td>
-                        <td>Up to 2.7kg</td>
+                        <td>{{ kiyim.balandligi }}</td>
+                        <td>{{ kiyim.kilogrami }}</td>
                     </tr>
                     <tr>
                         <td>NB</td>
@@ -321,5 +361,6 @@ tbody tr td:first-child {
             </table>
         </div>
     </div>
-</body> -->
+
+</body> 
 {% endblock %}

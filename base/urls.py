@@ -4,5 +4,7 @@ from .views import *
 urlpatterns = [
     path("navbar/", navigation, name="nav"),
     path("", home, name="home"),
-    path("detail/", detail_clothes, name="detail")
+    path("detail/<int:detail_id>/", detail_clothes, name="detail"),
+    path('filter/<str:jinsi>/', kiyimlar_view, name='jins_filter'),
+    path('skidkalar/', skidkali_kiyimlar_view, name='skidkali_kiyimlar'),
 ]
