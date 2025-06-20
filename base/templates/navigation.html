@@ -1,4 +1,5 @@
 {% load static %}
+  <script src="https://cdn.tailwindcss.com"></script>
 <style>
     nav {
         display: flex;
@@ -105,4 +106,17 @@
             Kirish <i class="fa-solid fa-user"></i>
         </a>
     </div>
+    <form method="get" action="" class="mb-6">
+  <label for="yosh" class="block text-sm font-medium text-gray-700 mb-1">🧒 Bolalar yoshi:</label>
+  <select name="yosh" id="yosh"
+          onchange="this.form.submit()"
+          class="block w-full max-w-xs px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm">
+    <option value="">Barchasi</option>
+    {% for oy in yoshlar %}
+      <option value="{{ oy }}" {% if request.GET.yosh == oy %}selected{% endif %}>
+        {{ oy }} oylik
+      </option>
+    {% endfor %}
+  </select>
+</form>
 </nav>
