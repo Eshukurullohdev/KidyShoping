@@ -26,3 +26,7 @@ def kiyimlar_view(request, jinsi=None):
 def skidkali_kiyimlar_view(request):
     kiyimlar = Main_Kiyim.objects.filter(skidkasi__isnull=False)
     return render(request, 'skidka_kiyimlar.html', {'kiyimlar': kiyimlar})
+
+def yosh_boyicha_kiyimlar(request, yosh):
+    kiyimlar = Main_Kiyim.objects.filter(yoshi=yosh)
+    return render(request, "kiyimlar.html", {"kiyimlar": kiyimlar, "yosh": yosh})

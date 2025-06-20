@@ -1,6 +1,24 @@
 from django.db import models
 
 class Main_Kiyim(models.Model):
+    YOSH_CHOICES = [
+        ('1', '1 oylik'),
+        ('2', '2 oylik'),
+        ('3', '3 oylik'),
+        ('4', '4 oylik'),
+        ('5', '5 oylik'),
+        ('6', '6 oylik'),
+        ('7', '7 oylik'),
+        ('8', '8 oylik'),
+        ('9', '9 oylik'),
+    ]
+    yoshi = models.CharField(
+        max_length=2,
+        choices=YOSH_CHOICES,
+        blank=True,
+        null=True,
+        verbose_name="Bolalar yoshi"
+    )
     GENDER_CHOICES = [
         ('qiz', 'Qiz bola'),
         ('ogil', 'O‘g‘il bola'),
