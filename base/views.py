@@ -27,6 +27,7 @@ def skidkali_kiyimlar_view(request):
     kiyimlar = Main_Kiyim.objects.filter(skidkasi__isnull=False)
     return render(request, 'skidka_kiyimlar.html', {'kiyimlar': kiyimlar})
 
+
 def yosh_boyicha(request, yosh):
     yoshlar = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
     yosh = request.GET.get('yosh')
