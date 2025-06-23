@@ -24,6 +24,7 @@ class Main_Kiyim(models.Model):
         ('ogil', 'O‘g‘il bola'),
     ]
 
+    
     jinsi = models.CharField(
         max_length=5,
         choices=GENDER_CHOICES,
@@ -32,6 +33,20 @@ class Main_Kiyim(models.Model):
         help_text="Qiz bola yoki o‘g‘il bola uchun"
     )
 
+    pre_balandligi = models.CharField("PRE balandligi", max_length=50, blank=True, null=True)
+    pre_kilogrami = models.CharField("PRE kilogrami", max_length=50, blank=True, null=True)
+
+    nb_balandligi = models.CharField("NB balandligi", max_length=50, blank=True, null=True)
+    nb_kilogrami = models.CharField("NB kilogrami", max_length=50, blank=True, null=True)
+
+    m3_balandligi = models.CharField("3M balandligi", max_length=50, blank=True, null=True)
+    m3_kilogrami = models.CharField("3M kilogrami", max_length=50, blank=True, null=True)
+
+    m6_balandligi = models.CharField("6M balandligi", max_length=50, blank=True, null=True)
+    m6_kilogrami = models.CharField("6M kilogrami", max_length=50, blank=True, null=True)
+
+    m9_balandligi = models.CharField("9M balandligi", max_length=50, blank=True, null=True)
+    m9_kilogrami = models.CharField("9M kilogrami", max_length=50, blank=True, null=True)
     # ... boshqa barcha fieldlar xuddi oldingidek ...
     main_img = models.ImageField(upload_to='kiyimlar/', blank=True, null=True)
     birinchi_img = models.ImageField(upload_to='kiyimlar/', blank=True, null=True)
