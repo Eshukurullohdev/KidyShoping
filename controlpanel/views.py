@@ -51,7 +51,7 @@ def product_edit(request, pk):
 def product_delete(request, pk):
     product = get_object_or_404(Main_Kiyim, pk=pk)
     product.delete()
-    return redirect('dashboard')
+    return redirect('dashboard.html')
 
 # controlpanel/forms.py
 from django import forms

@@ -1,9 +1,9 @@
-# templates/controlpanel/dashboard.html
-{% extends 'base.html' %}
+
+{% extends 'admin_base.html' %}
 {% block content %}
 <div class="flex items-center justify-between mb-6">
   <h1 class="text-4xl font-extrabold text-blue-700">👶 Kiyimlar Boshqaruvi</h1>
-  <a href="{% url 'product_add' %}" class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-semibold py-2 px-4 rounded shadow-lg">+ Yangi Kiyim</a>
+  <a href="{% url 'controlpanel:product_add' %}" class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-semibold py-2 px-4 rounded shadow-lg">+ Yangi Kiyim</a>
 </div>
 
 <div class="overflow-x-auto bg-white rounded-xl shadow-lg">
@@ -43,8 +43,8 @@
           {% else %}<span class="text-gray-400 italic">-</span>{% endif %}
         </td>
         <td class="px-4 py-3 whitespace-nowrap">
-          <a href="{% url 'product_edit' product.pk %}" class="text-indigo-600 hover:underline">Tahrirlash</a>
-          <a href="{% url 'product_delete' product.pk %}" class="text-red-600 hover:underline ml-4">O‘chirish</a>
+          <a href="{% url 'controlpanel:product_edit' product.pk %}" class="text-indigo-600 hover:underline">Tahrirlash</a>
+          <a href="{% url 'controlpanel:product_delete' product.pk %}" class="text-red-600 hover:underline ml-4">O‘chirish</a>
         </td>
       </tr>
       {% empty %}
