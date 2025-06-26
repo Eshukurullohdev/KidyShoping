@@ -1,0 +1,78 @@
+# templates/controlpanel/dashboard.html
+{% extends 'base.html' %}
+{% block content %}
+<div class="flex items-center justify-between mb-6">
+  <h1 class="text-4xl font-extrabold text-blue-700">👶 Kiyimlar Boshqaruvi</h1>
+  <a href="{% url 'product_add' %}" class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-semibold py-2 px-4 rounded shadow-lg">+ Yangi Kiyim</a>
+</div>
+
+<div class="overflow-x-auto bg-white rounded-xl shadow-lg">
+  <table class="min-w-full divide-y divide-gray-200 text-sm">
+    <thead class="bg-blue-50">
+      <tr>
+        <th class="px-4 py-3 text-left font-semibold text-gray-600 uppercase">Rasm</th>
+        <th class="px-4 py-3 text-left font-semibold text-gray-600 uppercase">Tavsifi</th>
+        <th class="px-4 py-3 text-left font-semibold text-gray-600 uppercase">Jinsi</th>
+        <th class="px-4 py-3 text-left font-semibold text-gray-600 uppercase">Narhi</th>
+        <th class="px-4 py-3 text-left font-semibold text-gray-600 uppercase">Chegirma (%)</th>
+        <th class="px-4 py-3 text-left font-semibold text-gray-600 uppercase">Rasm 2</th>
+        <th class="px-4 py-3 text-left font-semibold text-gray-600 uppercase">Rasm 3</th>
+        <th class="px-4 py-3 text-left font-semibold text-gray-600 uppercase">Harakatlar</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-100">
+      {% for product in products %}
+      <tr class="hover:bg-blue-50">
+        <td class="px-4 py-3">
+          {% if product.main_img %}
+            <img src="{{ product.main_img.url }}" alt="main" class="w-16 h-16 object-cover rounded border hover:scale-105 transition-transform duration-200 cursor-pointer" onclick="openModal('{{ product.main_img.url }}')" title="Asosiy rasm" />
+          {% else %}<span class="text-gray-400 italic">-</span>{% endif %}
+        </td>
+        <td class="px-4 py-3 text-gray-900">{{ product.tavsifi }}</td>
+        <td class="px-4 py-3 text-gray-700">{{ product.get_jinsi_display }}</td>
+        <td class="px-4 py-3 text-green-600 font-bold">{{ product.narhi }} so'm</td>
+        <td class="px-4 py-3 text-red-500">{{ product.skidkasi }}%</td>
+        <td class="px-4 py-3">
+          {% if product.birinchi_img %}
+            <img src="{{ product.birinchi_img.url }}" alt="1-img" class="w-12 h-12 object-cover rounded shadow cursor-pointer" onclick="openModal('{{ product.birinchi_img.url }}')" title="1-rasm" />
+          {% else %}<span class="text-gray-400 italic">-</span>{% endif %}
+        </td>
+        <td class="px-4 py-3">
+          {% if product.ikkinchi_img %}
+            <img src="{{ product.ikkinchi_img.url }}" alt="2-img" class="w-12 h-12 object-cover rounded shadow cursor-pointer" onclick="openModal('{{ product.ikkinchi_img.url }}')" title="2-rasm" />
+          {% else %}<span class="text-gray-400 italic">-</span>{% endif %}
+        </td>
+        <td class="px-4 py-3 whitespace-nowrap">
+          <a href="{% url 'product_edit' product.pk %}" class="text-indigo-600 hover:underline">Tahrirlash</a>
+          <a href="{% url 'product_delete' product.pk %}" class="text-red-600 hover:underline ml-4">O‘chirish</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="8" class="px-6 py-4 text-center text-gray-400">Hech qanday kiyim yo‘q.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- Image Modal -->
+<div id="imageModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+  <div class="relative">
+    <img id="modalImage" src="" class="max-w-3xl max-h-[80vh] rounded-xl shadow-xl border-4 border-white">
+    <button onclick="closeModal()" class="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-2">&times;</button>
+  </div>
+</div>
+
+<script>
+function openModal(url) {
+  const modal = document.getElementById('imageModal');
+  const img = document.getElementById('modalImage');
+  img.src = url;
+  modal.classList.remove('hidden');
+}
+function closeModal() {
+  document.getElementById('imageModal').classList.add('hidden');
+}
+</script>
+{% endblock %}

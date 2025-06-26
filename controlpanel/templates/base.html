@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+  <nav class="bg-blue-600 p-4 text-black flex justify-between">
+    <span class="font-bold">Custom Admin</span>
+    {% if user.is_authenticated %}
+      <a href="{% url 'logout' %}" class="underline">Logout</a>
+    {% endif %}
+  </nav>
+  <div class="p-6 max-w-4xl mx-auto">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>
