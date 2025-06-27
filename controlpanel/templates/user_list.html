@@ -1,0 +1,32 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+<h2 class="text-3xl font-bold text-blue-700 mb-6">👥 Ro‘yxatdan O‘tgan Foydalanuvchilar</h2>
+
+<div class="bg-white rounded-xl shadow-xl overflow-x-auto">
+  <table class="min-w-full text-sm text-gray-700">
+    <thead class="bg-blue-50 text-xs uppercase text-blue-700">
+      <tr>
+        <th class="px-4 py-3 text-left">#</th>
+        <th class="px-4 py-3 text-left">Foydalanuvchi</th>
+       
+        <th class="px-4 py-3 text-left">Telefon</th>
+        <th class="px-4 py-3 text-left">Ro‘yxatdan o‘tgan</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200 bg-white">
+      {% for user in users %}
+      <tr class="hover:bg-blue-50">
+        <td class="px-4 py-2">{{ forloop.counter }}</td>
+        <td class="px-4 py-2 font-semibold">{{ user.username }}</td>
+        <td class="px-4 py-2">{{ user.first_name }}</td>
+        <td class="px-4 py-2">{{ user.date_joined|date:"Y-m-d H:i" }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5" class="text-center py-4 text-gray-400">Hech qanday foydalanuvchi topilmadi.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -41,3 +41,37 @@ def yosh_boyicha(request, yosh):
         'kiyimlar': kiyimlar,
         'yoshlar': yoshlar,
     })
+    
+    
+from django.contrib.auth import login
+from .forms import UserRegisterForm
+from django.shortcuts import redirect
+from django.contrib import messages
+from django.contrib.auth.models import User
+
+def register(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        password = request.POST.get('password')
+        confirm = request.POST.get('confirm_password')
+        phone = request.POST.get('phone')
+
+        if password != confirm:
+            messages.error(request, "Parollar mos emas.")
+            return redirect('register')
+
+        if User.objects.filter(username=name).exists():
+            messages.error(request, "Bu foydalanuvchi allaqachon mavjud.")
+            return redirect('register')
+
+        user = User.objects.create_user(
+            username=name,
+            password=password
+        )
+        user.first_name = phone  # phone ma'lumotni vaqtincha shu yerga yozamiz
+        user.save()
+
+        messages.success(request, "Ro‘yxatdan o‘tish muvaffaqiyatli!")
+        return redirect('/')
+
+    return render(request, 'register.html')

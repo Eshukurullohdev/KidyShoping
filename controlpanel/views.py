@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from base.models import Main_Kiyim
 from .forms import ProductForm
+from django.contrib.auth.models import User
 
 def login_view(request):
     if request.user.is_authenticated:
@@ -80,3 +81,9 @@ def analytics_view(request):
         'with_discount': with_discount,
         'without_discount': without_discount
     })
+    
+
+@login_required
+def user_list_view(request):
+    users = User.objects.order_by('-date_joined')
+    return render(request, 'user_list.html', {'users': users})

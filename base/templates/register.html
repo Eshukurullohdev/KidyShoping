@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: #f6f5f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 1.6;
+    height: 100vh;
+}
+
+.wrapper {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    height: 480px;
+    transition: 0.6s ease-in-out;
+}
+
+.sign-up-left {
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    /* background-color: #08a886; */
+    background-color: #cc8799;
+    color: #fff;
+}
+.sign-up-left img {
+    position: absolute;
+    top: 20px;
+    left: 0;
+}
+.sign-up-left form h2 {
+    font-size: 30px;
+}
+.sign-up-left form p {
+    margin: 20px 0;
+    color: #f6f5f7;
+}
+.sign-up-left form button {
+    text-transform: uppercase;
+    color: #f6f5f7;
+    /* background-color: #08a886; */
+    background-color: #cc8799;
+    border: 2px solid #f6f5f7;
+    padding: 15px 60px;
+    border-radius: 50px;
+}
+
+
+/* right */
+.sign-up-right {
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    padding: 80px;
+    width: 60%;
+    height: 100%;
+}
+.sign-up-right h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #cc8799;
+}
+.sign-up-right-info a {
+    display: block;
+    border: 2px solid #f6f5f7;
+    padding: 12px;
+    text-decoration: none;
+    color: #b2b2b2;
+}
+.sign-up-right-info a i {
+    font-size: 18px;
+    margin-right: 10px;
+}
+.sign-up-right-info p {
+    margin: 20px 0;
+    font-size: 12px;
+    color: #b2b2b2;
+}
+.sign-up-right form input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background-color: #f6f5f7;
+    margin-bottom: 7px;
+}
+.sign-up-right form input::placeholder {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.sign-up-right form button {
+    text-transform: uppercase;
+    color: #f6f5f7;
+    /* background-color: #08a886; */
+    background-color: #cc8799;
+    border: 2px solid #f6f5f7;
+    padding: 15px 60px;
+    border-radius: 50px;
+    margin-top: 17px;
+}
+
+
+.triangle {
+    position: absolute;
+    top: 0px;
+    right: -50px;
+    z-index: 1;
+    transform: rotate(-20deg) scale(5);
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent;
+    border-right: 100px solid #c75656;
+    border-bottom: 50px solid transparent;
+}
+
+.circle {
+    position: absolute;
+    left: -100px;
+    bottom: -100px;
+    z-index: 1;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background-color: #dfa812;
+}
+</style>
+<body>
+     <div class="wrapper">
+        <div class="sign-up-left">
+            <img src="white-png.png" alt="logo" width="120">
+            <form>
+                <h2>Welcome Back!</h2>
+                <p>To keep connected with us please login with personal info</p>
+                <button>sign in</button>
+            </form>
+        </div>
+        <div class="sign-up-right">
+            <div class="sign-up-right-info">
+                <h2>Create Account</h2>
+                <a href="#"><i class="fa-brands fa-google"></i> Google Account</a>
+                <p>or use your email for registration:</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="text" placeholder="Name" name="name" required>
+                    <input type="password" placeholder="Password" name="password" required>
+                    <input type="password" placeholder="Confirm Password" name="confirm_password" required>
+                    <input type="text" placeholder="Phone Number" name="phone" required>
+                    <button type="submit">sign up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="triangle"></div>
+    <div class="circle"></div>
+</body>
+</html>
