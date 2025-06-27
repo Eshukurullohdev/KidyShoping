@@ -7,22 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 text-gray-900">
-  <div class="flex min-h-screen">
-    <!-- Sidebar -->
-    <aside class="w-64 bg-blue-800 text-white p-6 space-y-4">
-      <h1 class="text-2xl font-bold">🛠️ Admin</h1>
-      <nav class="space-y-2">
-        <a href="{% url 'dashboard' %}" class="block px-3 py-2 rounded hover:bg-blue-700">🏠 Dashboard</a>
-        <a href="{% url 'product_add' %}" class="block px-3 py-2 rounded hover:bg-blue-700">➕ Yangi Kiyim</a>
-        <a href="{% url 'logout' %}" class="block px-3 py-2 rounded hover:bg-red-600 bg-red-500 text-white">🚪 Chiqish</a>
-      </nav>
-    </aside>
 
-    <!-- Main content -->
-    <main class="flex-1 p-8">
-      {% block content %}{% endblock %}
-    </main>
-  </div>
 </body>
 </html>
 
@@ -106,22 +91,37 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Admin Panel</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
-  <nav class="bg-blue-600 p-4 text-black flex justify-between">
-    <span class="font-bold">Custom Admin</span>
-    {% if user.is_authenticated %}
-      <a href="{% url 'controlpanel:login' %}" class="underline">Logout</a>
-    {% endif %}
-  </nav>
-  <div class="p-[-1.5rem] max-w-4xl mx-auto">
-    {% block content %}{% endblock %}
+<body class="bg-gray-100 text-gray-900">
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gradient-to-b from-blue-900 to-blue-700 text-white p-6 space-y-6 shadow-xl">
+      <h1 class="text-2xl font-extrabold tracking-wide">🛠️ Admin Panel</h1>
+      <nav class="space-y-2">
+        <a href="{% url 'controlpanel:dashboard' %}" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-600 transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h4l3 8 4-16 3 8h4" /></svg>
+          <span>Boshqaruv</span>
+        </a>
+        <a href="{% url 'controlpanel:product_add' %}" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-600 transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
+          <span>Yangi Kiyim</span>
+        </a>
+        <a href="{% url 'controlpanel:logout' %}" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7" /></svg>
+          <span>Chiqish</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="flex-1 p-8">
+      {% block content %}{% endblock %}
+    </main>
   </div>
 </body>
 </html>

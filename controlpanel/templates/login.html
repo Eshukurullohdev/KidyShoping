@@ -1,18 +1,40 @@
-{% extends 'base.html' %}
+
+{% extends 'admin_base.html' %}
 {% block content %}
-<div class="max-w-md mx-auto bg-white p-6 rounded shadow">
-  <h2 class="text-xl font-bold mb-4">Login</h2>
+<div class="max-w-sm mx-auto bg-white p-6 rounded-xl shadow-lg mt-12">
+  <h2 class="text-2xl font-bold mb-4 text-blue-600">🔐 Admin Login</h2>
+
   {% if messages %}
-    {% for message in messages %}
-      <p class="text-red-500">{{ message }}</p>
-    {% endfor %}
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+      <div class="bg-white rounded-xl shadow-lg max-w-sm w-full p-6 relative animate-fade-in">
+        {% for message in messages %}
+          <p class="text-center text-red-600 font-semibold text-sm">{{ message }}</p>
+        {% endfor %}
+        <button onclick="document.getElementById('loginModal').classList.add('hidden')" class="absolute top-2 right-2 text-lg bg-red-500 text-white w-8 h-8 rounded-full hover:bg-red-600">&times;</button>
+      </div>
+    </div>
   {% endif %}
+
   <form method="post">{% csrf_token %}
-    <label class="block mb-2">Username:</label>
-    <input type="text" name="username" class="w-full p-2 border mb-4" required>
-    <label class="block mb-2">Password:</label>
-    <input type="password" name="password" class="w-full p-2 border mb-4" required>
-    <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded">Login</button>
+    <div class="mb-4">
+      <label class="block text-sm text-gray-700">Username</label>
+      <input type="text" name="username" required class="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500" />
+    </div>
+    <div class="mb-6">
+      <label class="block text-sm text-gray-700">Password</label>
+      <input type="password" name="password" required class="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500" />
+    </div>
+    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">Kirish</button>
   </form>
 </div>
+
+<style>
+@keyframes fade-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+</style>
 {% endblock %}

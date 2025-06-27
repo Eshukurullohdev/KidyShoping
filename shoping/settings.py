@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-4eosswar6o5$+t56l2sjvc6(3t17cf&1ofgo9bt)ms)7+luq%)
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+LOGIN_URL = '/admin-panel/login/'
 
 # Application definition
 
