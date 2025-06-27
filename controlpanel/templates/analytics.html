@@ -1,0 +1,100 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+<h2 class="text-3xl font-bold text-blue-700 mb-6">📊 Kiyim Statistikasi</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <!-- Jins statistikasi -->
+  <div class="bg-white p-6 rounded-xl shadow-xl">
+    <canvas id="genderChart" height="300"></canvas>
+  </div>
+
+  <!-- Narx statistikasi -->
+  <div class="bg-white p-6 rounded-xl shadow-xl">
+    <canvas id="priceChart" height="300"></canvas>
+  </div>
+
+  <!-- Chegirma mavjudligi -->
+  <div class="bg-white p-6 rounded-xl shadow-xl">
+    <canvas id="discountChart" height="300"></canvas>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Gender Chart
+const genderCtx = document.getElementById('genderChart').getContext('2d');
+new Chart(genderCtx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Qiz bola', 'O‘g‘il bola'],
+    datasets: [{
+      label: 'Kiyim soni',
+      data: [{{ qiz_count }}, {{ ogil_count }}],
+      backgroundColor: ['rgba(255, 99, 132, 0.7)', 'rgba(54, 162, 235, 0.7)'],
+      borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    plugins: {
+      title: { display: true, text: 'Jins bo‘yicha kiyimlar' },
+      legend: { position: 'bottom' }
+    }
+  }
+});
+
+// Price Chart
+const priceCtx = document.getElementById('priceChart').getContext('2d');
+new Chart(priceCtx, {
+  type: 'bar',
+  data: {
+    labels: ['0-100k', '100-200k', '200-300k', '300k+'],
+    datasets: [{
+      label: 'Kiyim soni',
+      data: [{{ range_1 }}, {{ range_2 }}, {{ range_3 }}, {{ range_4 }}],
+      backgroundColor: [
+        'rgba(255, 206, 86, 0.7)',
+        'rgba(75, 192, 192, 0.7)',
+        'rgba(153, 102, 255, 0.7)',
+        'rgba(255, 159, 64, 0.7)'
+      ],
+      borderColor: [
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    plugins: {
+      title: { display: true, text: 'Narx oralig‘i bo‘yicha' },
+      legend: { display: false }
+    },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+
+// Discount Chart
+const discountCtx = document.getElementById('discountChart').getContext('2d');
+new Chart(discountCtx, {
+  type: 'pie',
+  data: {
+    labels: ['Chegirmali', 'Chegirmasiz'],
+    datasets: [{
+      label: 'Kiyimlar',
+      data: [{{ with_discount }}, {{ without_discount }}],
+      backgroundColor: ['rgba(255, 99, 132, 0.7)', 'rgba(201, 203, 207, 0.7)'],
+      borderColor: ['rgba(255, 99, 132, 1)', 'rgba(201, 203, 207, 1)'],
+      borderWidth: 1
+    }]
+  },
+  options: {
+    plugins: {
+      title: { display: true, text: 'Chegirmaga ega kiyimlar' },
+      legend: { position: 'bottom' }
+    }
+  }
+});
+</script>
+{% endblock %}

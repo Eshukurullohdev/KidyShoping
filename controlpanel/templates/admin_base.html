@@ -1,96 +1,3 @@
-{% comment %} # templates/controlpanel/admin_base.html
-<!DOCTYPE html>
-<html lang="uz">
-<head>
-  <meta charset="UTF-8">
-  <title>Admin Panel</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 text-gray-900">
-
-</body>
-</html>
-
-# templates/controlpanel/dashboard.html
-{% extends 'controlpanel/admin_base.html' %}
-{% block content %}
-<div class="flex items-center justify-between mb-6">
-  <h1 class="text-4xl font-extrabold text-blue-700">👶 Kiyimlar Boshqaruvi</h1>
-</div>
-<div class="overflow-x-auto bg-white rounded-xl shadow-lg">
-  <table class="min-w-full divide-y divide-gray-200 text-sm">
-    <thead class="bg-blue-50">
-      <tr>
-        <th class="px-4 py-3">Rasm</th>
-        <th class="px-4 py-3">Tavsifi</th>
-        <th class="px-4 py-3">Jinsi</th>
-        <th class="px-4 py-3">Narhi</th>
-        <th class="px-4 py-3">Chegirma (%)</th>
-        <th class="px-4 py-3">Rasm 2</th>
-        <th class="px-4 py-3">Rasm 3</th>
-        <th class="px-4 py-3">Harakatlar</th>
-      </tr>
-    </thead>
-    <tbody class="bg-white divide-y divide-gray-100">
-      {% for product in products %}
-      <tr class="hover:bg-blue-50">
-        <td class="px-4 py-3">
-          {% if product.main_img %}
-            <img src="{{ product.main_img.url }}" alt="main" class="w-16 h-16 object-cover rounded border" />
-          {% endif %}
-        </td>
-        <td class="px-4 py-3">{{ product.tavsifi }}</td>
-        <td class="px-4 py-3">{{ product.get_jinsi_display }}</td>
-        <td class="px-4 py-3 text-green-600 font-bold">{{ product.narhi }} so'm</td>
-        <td class="px-4 py-3 text-red-500">{{ product.skidkasi }}%</td>
-        <td class="px-4 py-3">
-          {% if product.birinchi_img %}
-            <img src="{{ product.birinchi_img.url }}" class="w-12 h-12 rounded object-cover" />
-          {% endif %}
-        </td>
-        <td class="px-4 py-3">
-          {% if product.ikkinchi_img %}
-            <img src="{{ product.ikkinchi_img.url }}" class="w-12 h-12 rounded object-cover" />
-          {% endif %}
-        </td>
-        <td class="px-4 py-3">
-          <a href="{% url 'product_edit' product.pk %}" class="text-blue-600 hover:underline">✏️</a>
-          <a href="{% url 'product_delete' product.pk %}" class="text-red-600 hover:underline ml-3">🗑</a>
-        </td>
-      </tr>
-      {% empty %}
-      <tr><td colspan="8" class="text-center py-6 text-gray-400">Hech narsa topilmadi.</td></tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
-{% endblock %}
-
-# templates/controlpanel/login.html
-{% extends 'controlpanel/admin_base.html' %}
-{% block content %}
-<div class="max-w-sm mx-auto bg-white p-6 rounded-xl shadow-lg mt-12">
-  <h2 class="text-2xl font-bold mb-4 text-blue-600">🔐 Admin Login</h2>
-  {% if messages %}
-    {% for message in messages %}<p class="text-red-500">{{ message }}</p>{% endfor %}
-  {% endif %}
-  <form method="post">{% csrf_token %}
-    <div class="mb-4">
-      <label class="block text-sm text-gray-700">Username</label>
-      <input type="text" name="username" required class="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500" />
-    </div>
-    <div class="mb-6">
-      <label class="block text-sm text-gray-700">Password</label>
-      <input type="password" name="password" required class="w-full mt-1 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500" />
-    </div>
-    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">Kirish</button>
-  </form>
-</div>
-{% endblock %} {% endcomment %}
-
-
-
-<!DOCTYPE html>
 <html lang="uz">
 <head>
   <meta charset="UTF-8">
@@ -110,6 +17,10 @@
         <a href="{% url 'controlpanel:product_add' %}" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-600 transition-all">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
           <span>Yangi Kiyim</span>
+        </a>
+        <a href="{% url 'controlpanel:analytics' %}" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-600 transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 11V7a4 4 0 118 0v4m-4 4v4m0-4a4 4 0 100-8 4 4 0 000 8z" /></svg>
+          <span>Statistika</span>
         </a>
         <a href="{% url 'controlpanel:logout' %}" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 transition-all">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7" /></svg>
