@@ -146,11 +146,14 @@ body {
     border-radius: 50%;
     background-color: #dfa812;
 }
+
 </style>
 <body>
+ 
+
      <div class="wrapper">
         <div class="sign-up-left">
-            <img src="white-png.png" alt="logo" width="120">
+            <img src="/static/img/white-png.png" alt="logo" width="120">
             <form>
                 <h2>Welcome Back!</h2>
                 <p>To keep connected with us please login with personal info</p>
@@ -166,7 +169,7 @@ body {
                     {% csrf_token %}
                     <input type="text" placeholder="Name" name="name" required>
                     <input type="password" placeholder="Password" name="password" required>
-                    <input type="password" placeholder="Confirm Password" name="confirm_password" required>
+                  
                     <input type="text" placeholder="Phone Number" name="phone" required>
                     <button type="submit">sign up</button>
                 </form>
@@ -175,5 +178,7 @@ body {
     </div>
     <div class="triangle"></div>
     <div class="circle"></div>
+
+  
 </body>
 </html>

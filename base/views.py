@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Main_Kiyim
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
 def navigation(request):
     return render(request, "navigation.html")
 def home(request):
@@ -49,29 +50,21 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 
+      
 def register(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         password = request.POST.get('password')
-        confirm = request.POST.get('confirm_password')
         phone = request.POST.get('phone')
-
-        if password != confirm:
-            messages.error(request, "Parollar mos emas.")
-            return redirect('register')
-
-        if User.objects.filter(username=name).exists():
-            messages.error(request, "Bu foydalanuvchi allaqachon mavjud.")
-            return redirect('register')
-
-        user = User.objects.create_user(
-            username=name,
-            password=password
-        )
-        user.first_name = phone  # phone ma'lumotni vaqtincha shu yerga yozamiz
-        user.save()
-
-        messages.success(request, "Ro‘yxatdan o‘tish muvaffaqiyatli!")
-        return redirect('/')
-
+        # ... inputlardan qiymatlarni oling ...
+        user = User.objects.create_user(username=name, password=password)
+        login(request, user)
+        messages.success(request, " Ro‘yxatdan o‘tish muvaffaqiyatli!")
+        return redirect('home')  # faqat foydalanuvchi sahifa
     return render(request, 'register.html')
+
+
+
+
+
+

@@ -7,19 +7,30 @@ from base.models import Main_Kiyim
 from .forms import ProductForm
 from django.contrib.auth.models import User
 
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django.shortcuts import redirect, render
+
 def login_view(request):
-    if request.user.is_authenticated:
-        return redirect('controlpanel:dashboard')
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username')
+        password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
-        if user:
-            login(request, user)
-            return redirect('controlpanel:dashboard')
+
+        if user is not None:
+            if user.is_staff:  # ✅ Faqat staff userlar kiradi
+                login(request, user)
+                messages.success(request, "Xush kelibsiz, admin!")
+                return redirect('controlpanel:dashboard')
+            else:
+                messages.error(request, "❌ Sizda admin-panelga kirish huquqi yo‘q!")
+                return redirect('controlpanel:login')
         else:
-            messages.error(request, 'Noto‘g‘ri login yoki parol')
+            messages.error(request, "❌ Login yoki parol xato!")
+            return redirect('controlpanel:login')
+
     return render(request, 'login.html')
+
 
 @login_required
 def logout_view(request):

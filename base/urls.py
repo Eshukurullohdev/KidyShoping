@@ -9,4 +9,5 @@ urlpatterns = [
     path('skidkalar/', skidkali_kiyimlar_view, name='skidkali_kiyimlar'),
     path("yosh/<str:yosh>/", yosh_boyicha, name="yosh_boyicha"),
     path("register/", register, name="register"),
+
 ]

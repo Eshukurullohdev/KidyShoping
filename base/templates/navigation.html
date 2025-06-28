@@ -1,5 +1,5 @@
 {% load static %}
-  <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
     nav {
         display: flex;
@@ -102,9 +102,20 @@
         <li><a href="{% url 'skidkali_kiyimlar' %}">Chegirmalar %</a></li>
     </ul>
     <div class="nav_right">
+
+        {% if user.is_authenticated %}
+        <span class="text-green-600 font-medium">👤 Tizimga kirdingiz</span>
+        
+        {% else %}
         <a href="{% url 'register' %}" class="log">
-            Kirish <i class="fa-solid fa-user"></i>
+            Login <i class="fa-solid fa-user"></i>
         </a>
+        {% endif %}
+       
+
+
+
+
     </div>
- 
+
 </nav>

@@ -210,19 +210,32 @@
         top: 20px;
         left: 100%;
     }
-     
+
+    .animate-slide {
+        transition: all 0.3s ease;
+        opacity: 1;
+        transform: translateY(0);
+    }
 </style>
+{% if messages %}
+<div id="successModal"
+    class="fixed top-0 right-[37.7rem] z-50 bg-green-500 text-white px-6 py-4 rounded shadow-lg animate-slide">
+    {% for message in messages %}
+    <p class="font-medium">{{ message }}</p>
+    {% endfor %}
+</div>
+{% endif %}
 <section id="intro">
 
-     
 
-  
-   
+
+
+
     <div class="my-logo">
         <img src="/static/img/my-logo.svg" alt="logo" width="80">
         <span>Made by I.Olimov</span>
     </div>
-    
+
 </section>
 <div class="logos">
     <div class="logos-slide">
@@ -257,9 +270,9 @@
                     {% endif %}
                     {% if kiyim.chegirma_foizi > 0 %}
                     <p style="color: green; font-size: 14px; margin-left: 5px; font-weight: bold;">
-                         Chegirma: {{ kiyim.chegirma_foizi }}%
+                        Chegirma: {{ kiyim.chegirma_foizi }}%
                     </p>
-                  
+
                     {% endif %}
                 </div>
             </div>
@@ -267,17 +280,26 @@
     </div>
     {% endfor %}
 </div>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
 
- <script>
+<script>
+    setTimeout(() => {
+        const modal = document.getElementById('successModal');
+        if (modal) {
+            modal.style.opacity = '0';
+            modal.style.transform = 'translateY(-10px)';
+            setTimeout(() => modal.remove(), 300);
+        }
+    }, 2000);
     const progressCircle = document.querySelector(".autoplay-progress svg");
     const progressContent = document.querySelector(".autoplay-progress span");
 
     const swiperEl = document.querySelector("swiper-container");
     swiperEl.addEventListener("autoplaytimeleft", (e) => {
-      const [swiper, time, progress] = e.detail;
-      progressCircle.style.setProperty("--progress", 1 - progress);
-      progressContent.textContent = `${Math.ceil(time / 1000)}s`;
+        const [swiper, time, progress] = e.detail;
+        progressCircle.style.setProperty("--progress", 1 - progress);
+        progressContent.textContent = `${Math.ceil(time / 1000)}s`;
     });
-  </script>
+
+</script>
 {% endblock %}
