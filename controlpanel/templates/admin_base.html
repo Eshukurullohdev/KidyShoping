@@ -7,9 +7,10 @@
 <body class="bg-gray-100 text-gray-900">
   <div class="flex min-h-screen">
     <!-- Sidebar -->
-    <aside class="w-64 bg-gradient-to-b from-blue-900 to-blue-700 text-white p-6 space-y-6 shadow-xl">
+    <aside class="w-64 bg-gradient-to-b f from-blue-900 to-blue-700 text-white p-6 space-y-6 shadow-xl">
       <h1 class="text-2xl font-extrabold tracking-wide">🛠️ Admin Panel</h1>
       <nav class="space-y-2">
+   
         <a href="{% url 'controlpanel:dashboard' %}" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-600 transition-all">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h4l3 8 4-16 3 8h4" /></svg>
           <span>Boshqaruv</span>
@@ -30,6 +31,15 @@
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7" /></svg>
           <span>Chiqish</span>
         </a>
+
+        <a href="{% url 'controlpanel:admin_profile' %}" class="flex items-center gap-2 px-4 py-2 transform translate-y-[300px] rounded-lg bg-green-600 hover:bg-red-700 transition-all">
+               {% if profile.avatar %}
+          <img src="{{ profile.avatar.url }}" alt="" class="rounded-full w-12 h-12">
+        {% endif %}
+         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+         
+         <span>Profilim</span>
+       </a>
       </nav>
     </aside>
 

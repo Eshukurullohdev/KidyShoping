@@ -2,6 +2,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from .models import Profile
+from django.contrib.auth import authenticate, update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash
 from django.contrib import messages
 from base.models import Main_Kiyim
 from .forms import ProductForm
@@ -12,6 +15,8 @@ from django.contrib import messages
 from django.shortcuts import redirect, render
 
 def login_view(request):
+    if not request.user.is_staff:
+        return redirect('home') 
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -40,10 +45,13 @@ def logout_view(request):
 @login_required
 def dashboard(request):
     kiyimlar = Main_Kiyim.objects.all()
-    return render(request, 'dashboard.html', {'products': kiyimlar})
+    profile = Profile.objects.all()
+    return render(request, 'dashboard.html', {'products': kiyimlar, 'profile': profile})
 
 @login_required
 def product_add(request):
+    if not request.user.is_staff:
+        return redirect('home')
     form = ProductForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         form.save()
@@ -52,6 +60,8 @@ def product_add(request):
 
 @login_required
 def product_edit(request, pk):
+    if not request.user.is_staff:
+        return redirect('home')
     product = get_object_or_404(Main_Kiyim, pk=pk)
     form = ProductForm(request.POST or None, request.FILES or None, instance=product)
     if form.is_valid():
@@ -61,6 +71,8 @@ def product_edit(request, pk):
 
 @login_required
 def product_delete(request, pk):
+    if not request.user.is_staff:
+        return redirect('home')
     product = get_object_or_404(Main_Kiyim, pk=pk)
     product.delete()
     return redirect('controlpanel:dashboard')
@@ -68,6 +80,8 @@ def product_delete(request, pk):
 
 @login_required
 def analytics_view(request):
+    if not request.user.is_staff:
+        return redirect('home')
     qiz_count = Main_Kiyim.objects.filter(jinsi='qiz').count()
     ogil_count = Main_Kiyim.objects.filter(jinsi='ogil').count()
 
@@ -96,5 +110,50 @@ def analytics_view(request):
 
 @login_required
 def user_list_view(request):
+    if not request.user.is_staff:
+        return redirect('home')
     users = User.objects.order_by('-date_joined')
     return render(request, 'user_list.html', {'users': users})
+
+
+@login_required
+def admin_profile_view(request):
+    if not request.user.is_staff:
+        return redirect('home')
+
+    user = request.user
+    profile, created = Profile.objects.get_or_create(user=user)
+
+    if request.method == 'POST':
+        old_password = request.POST.get('old_password')
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+        avatar = request.FILES.get('avatar')
+
+        if not authenticate(username=user.username, password=old_password):
+            messages.error(request, "❌ Eski parol noto‘g‘ri!")
+            return redirect('controlpanel:admin_profile')
+
+        if password and password != confirm_password:
+            messages.error(request, "❌ Yangi parollar mos emas!")
+            return redirect('controlpanel:admin_profile')
+
+        if username:
+            user.username = username
+        if email:
+            user.email = email
+        if password:
+            user.set_password(password)
+            update_session_auth_hash(request, user)
+        user.save()
+
+        if avatar:
+            profile.avatar = avatar
+        profile.save()
+
+        messages.success(request, "✅ Profil muvaffaqiyatli yangilandi!")
+        return redirect('controlpanel:admin_profile')
+
+    return render(request, 'admin_profile.html', {'profile': profile})
