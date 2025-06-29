@@ -15,8 +15,7 @@ from django.contrib import messages
 from django.shortcuts import redirect, render
 
 def login_view(request):
-    if not request.user.is_staff:
-        return redirect('home') 
+   
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -44,6 +43,8 @@ def logout_view(request):
 
 @login_required
 def dashboard(request):
+    if not request.user.is_staff:
+        return redirect('home') 
     kiyimlar = Main_Kiyim.objects.all()
     profile = Profile.objects.all()
     return render(request, 'dashboard.html', {'products': kiyimlar, 'profile': profile})
@@ -95,7 +96,6 @@ def analytics_view(request):
         Main_Kiyim.objects.filter(skidkasi__isnull=True).count() +
         Main_Kiyim.objects.filter(skidkasi=0).count()
     )
-
     return render(request, 'analytics.html', {
         'qiz_count': qiz_count,
         'ogil_count': ogil_count,
@@ -107,7 +107,6 @@ def analytics_view(request):
         'without_discount': without_discount
     })
     
-
 @login_required
 def user_list_view(request):
     if not request.user.is_staff:
