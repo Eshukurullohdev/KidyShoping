@@ -235,13 +235,37 @@
 </style>
 
 <body>
-   
+
     <div class="products">
         <div class="product_left">
-            
+            {% if kiyim.main_img %}
             <img src="{{ kiyim.main_img.url }}" alt="product-img" width="425" height="533">
+            {% endif %}
+            {% if kiyim.birinchi_img %}
             <img src="{{ kiyim.birinchi_img.url }}" alt="product-img" width="425" height="533">
+            {% endif %}
+            {% if kiyim.ikkinchi_img %}
             <img src="{{ kiyim.ikkinchi_img.url }}" alt="product-img" width="425" height="533">
+            {% endif %}
+            {% if kiyim.uchinchi_img %}
+            <img src="{{ kiyim.uchinchi_img.url }}" alt="product-img" width="425" height="533">
+            {% endif %}
+            {% if kiyim.tortinchi_img %}
+            <img src="{{ kiyim.tortinchi_img.url }}" alt="product-img" width="425" height="533">
+            {% endif %}
+            {% if kiyim.beshinchi_img %}
+            <img src="{{ kiyim.beshinchi_img.url }}" alt="product-img" width="425" height="533">
+            {% endif %}
+            {% if kiyim.oltinchi_img %}
+            <img src="{{ kiyim.oltinchi_img.url }}" alt="product-img" width="425" height="533">
+            {% endif %}
+            {% if kiyim.yettinchi_img %}
+            <img src="{{ kiyim.yettinchi_img.url }}" alt="product-img" width="425" height="533">
+            {% endif %}
+            {% if kiyim.sakkizinchi_img %}
+            <img src="{{ kiyim.sakkizinchi_img.url }}" alt="product-img" width="425" height="533">
+            {% endif %}
+
         </div>
         <div class="product_right">
             <div class="product_right_info">
@@ -306,7 +330,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="details">
         <div class="details-left">
             <h3>Ushbu element haqida</h3>
@@ -314,12 +338,22 @@
             <h3>Xususiyatlari :</h3>
             <ul>
                 <li>2-paket</li>
+                {% if kiyim.birinchi_xususiyati %}
                 <li>{{ kiyim.birinchi_xususiyati }}
                 </li>
+                {% endif %}
+                {%  if kiyim.ikkinchi_xususiyati %}
                 <li>{{ kiyim.ikkinchi_xususiyati }}</li>
+                {% endif %}
+                {% if kiyim.uchunchi_xususiyati %}
                 <li>{{ kiyim.uchunchi_xususiyati }}</li>
+                {% endif %}
+                {% if kiyim.tortinchi_xususiyati %}
                 <li>{{ kiyim.tortinchi_xususiyati }}</li>
+                {% endif %}
+                {% if kiyim.beshinchi_xususiyati %}
                 <li>{{ kiyim.beshinchi_xususiyati }}</li>
+                {% endif %}
             </ul>
         </div>
         <div class="details-right">
@@ -363,5 +397,5 @@
         </div>
     </div>
 
-</body> 
+</body>
 {% endblock %}
