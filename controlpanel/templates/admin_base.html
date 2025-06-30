@@ -9,6 +9,10 @@
     <!-- Sidebar -->
     <aside class="w-64 bg-gradient-to-b f from-blue-900 to-blue-700 text-white p-6 space-y-6 shadow-xl">
       <h1 class="text-2xl font-extrabold tracking-wide">🛠️ Admin Panel</h1>
+      <a href="{% url 'home' %}" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-600 transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zM5 17h14l-.67-6H5.67zM7 9V3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5V9h-9a.5.5 0 0 1-.5.5z" /></svg>
+          <span>Saytni Ko'rish</span>
+        </a>
       <nav class="space-y-2">
    
         <a href="{% url 'controlpanel:dashboard' %}" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-600 transition-all">
