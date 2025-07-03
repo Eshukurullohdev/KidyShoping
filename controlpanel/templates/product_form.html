@@ -8,7 +8,6 @@
     {% for field in form.visible_fields %}
     {% if field.name not in "birinchi_img ikkinchi_img uchinchi_img tortinchi_img beshinchi_img oltinchi_img ikkinchi_xususiyati uchunchi_xususiyati tortinchi_xususiyati beshinchi_xususiyati oltinchi_xususiyati" %}
     <div class="relative">
-
       {% if field.name in "yoshi jinsi pre_balandligi pre_kilogrami nb_balandligi nb_kilogrami m3_balandligi m3_kilogrami m6_balandligi m6_kilogrami m9_balandligi m9_kilogrami" %}
         <label for="id_{{ field.name }}" class="block mb-1 text-sm text-gray-700 font-medium">{{ field.label }}</label>
         <select name="{{ field.name }}" id="id_{{ field.name }}"

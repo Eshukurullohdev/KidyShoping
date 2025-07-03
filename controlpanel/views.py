@@ -70,6 +70,7 @@ def product_edit(request, pk):
         return redirect('controlpanel:dashboard')
     return render(request, 'product_form.html', {'form': form})
 
+
 @login_required
 def product_delete(request, pk):
     if not request.user.is_staff:
@@ -77,6 +78,10 @@ def product_delete(request, pk):
     product = get_object_or_404(Main_Kiyim, pk=pk)
     product.delete()
     return redirect('controlpanel:dashboard')
+
+
+
+
 
 
 @login_required
@@ -106,6 +111,7 @@ def analytics_view(request):
         'with_discount': with_discount,
         'without_discount': without_discount
     })
+    
     
 @login_required
 def user_list_view(request):
