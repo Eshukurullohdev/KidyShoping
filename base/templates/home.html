@@ -2,24 +2,31 @@
 {% load static %}
 {% block content %}
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cookie&family=League+Spartan:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+    @import url('https://fonts.googleapis.com/css2?family=Coiny&family=League+Spartan:wght@100..900&family=Orbitron:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        scroll-behavior: smooth;
     }
 
     body {
         font-family: "Poppins", sans-serif;
         line-height: 1.6;
     }
-
     h1,
+    .intro-heading_font {
+        font-family: "Coiny", system-ui;
+    }
     h2,
-    h3,
     h4 {
         font-family: "League Spartan", serif;
+    }
+    .animation_text {
+        font-family: "Orbitron", sans-serif;
+        white-space: nowrap;
+        font-weight: 900;
+        letter-spacing: 2px;
     }
 
     a {
@@ -27,22 +34,143 @@
         text-decoration: none;
         color: #000;
     }
-
+    /* intro-start-of-section */
     #intro {
-        position: relative;
-        height: 100vh;
-        text-align: center;
-        color: #fff;
+        padding: 20px 0;
+    }
+    .intro-main {
+        width: 1291px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+
+    }
+    .intro-main-left {
+        background-image: url(/static/img/intro-main-1.svg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50%;
+        width: 871px;
+        height: 566px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 40px;
     }
 
-    .bg {
+    .intro-main-left-info {
+        width: 417px;
+    }
+    .intro-main-left-info h1 {
+        font-size: 32px;
+        line-height: 120%;
+        color: #cc8799;
+    }
+
+    .intro-main-left-info p {
+        margin: 17px 0 30px;
+    }
+    .intro-main-left-info a {
+        background-color: #cc8799;
+        color: #fff;
+        padding: 17px 58px;
+        display: inline-block;
+        border-radius: 50px;
+    }
+    .intro-main-left-info a:hover {
+        background-color: #e36f8e; 
+    }
+
+
+    .intro-main-right-top {
+        background-image: url(/static/img/intro-main-2.svg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50%;
+        width: 400px;
+        height: 274px;
+        padding: 53px;
+        text-align: center;
+        margin-bottom: 18px;
+    }
+    .intro-heading_font {
+        font-size: 35px;
+        line-height: 100%;
+        color: #cc8799;
+        margin-bottom: 10px;
+    }
+
+    .intro-main-right-bottom {
+        background-image: url(/static/img/intro-main-3.svg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50%;
+        width: 400px;
+        height: 274px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    .intro-main-right-bottom h4 {
+        font-size: 18px;
+        color: #575454;
+    }
+
+
+    .animation-text-section {
+        background-image: url(/static/img/animation-text.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50%;
+        height: 700px;
+        margin: 70px 0;
+        overflow: hidden;
+        text-transform: uppercase;
+        position: relative;
+    }
+
+    .animation-text-section-top {
+        position: absolute;
+        top: 311px;
+        left: 0;
+        z-index: 2;
+        transform: rotate(5deg) scale(1.2);
+        background-color: #cc1f50;
+        color: #d3d5e5;
+    }
+    .animation-text-section-top p {
+        font-size: 70px;
+        animation: text-1 80s linear infinite;
+    }
+    @keyframes text-1 {
+        
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+    .animation-text-section-bottom {
         position: absolute;
         left: 0;
-        width: 100%;
-        height: 100%;
+        transform: rotate(-5deg) scale(1.2);
+        background-color: #9eec5a;
+        color: #050508;
+    }
+    .animation-text-section-bottom  p {
+        font-size: 50px;
+        animation: text-2 90s linear infinite;
+    }
+    @keyframes text-2 {
+        
+        100% {
+            transform: translateX(-100%);
+        }
     }
 
-    .my-logo {
+
+
+
+    /* .my-logo {
         position: absolute;
         bottom: 10px;
         right: 10px;
@@ -67,37 +195,9 @@
         -webkit-text-fill-color: transparent;
         font-weight: 500;
         font-size: 20px;
-    }
-
-    .intro_info {
-        position: absolute;
-        top: 35%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 1140px;
-    }
-
-    .intro_info h1 {
-        text-transform: uppercase;
-        font-size: 70px;
-        line-height: 1.2;
-        letter-spacing: 2px;
-        text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
-    }
-
-    .intro_info hr {
-        width: 100px;
-        height: 4px;
-        background-color: #fff;
-        border: none;
-        margin: 20px auto;
-    }
-
-    .intro_info p {
-        font-size: 25px;
-        text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
-    }
-
+    } */
+    
+    /* intro-end-of-section */
     .products {
         width: 1291px;
         margin: 0 auto;
@@ -216,6 +316,47 @@
         opacity: 1;
         transform: translateY(0);
     }
+
+
+
+    @media only screen and (max-width: 575px) {
+        #intro {
+            padding: 23px 0;
+        }
+        .intro-main {
+            flex-direction: column;
+            width: 94%;
+            margin: 0 auto;
+            
+        }
+        .intro-main-left {
+            padding: 10px;
+            width: 100%;
+        }
+        .intro-main-left-info {
+            width: 286px;
+        }   
+        .intro-main-left-info h1 {
+            font-size: 22px;
+        }
+        .intro-main-left-info p {
+            margin: 10px 0 20px;
+            font-size: 14px;
+        }
+        .intro-main-left-info a {
+            padding: 10px 35px;
+            font-size: 14px;
+        }
+        .intro-main-right-top {
+            margin: 18px 0;
+            width: 100%;
+        }
+        .intro-main-right-bottom {
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+        }
+    }
 </style>
 {% if messages %}
 <div id="successModal"
@@ -226,15 +367,58 @@
 </div>
 {% endif %}
 <section id="intro">
-    <div class="my-logo">
-        <img src="/static/img/my-logo.svg" alt="logo" width="80">
-        <span>Made by I.Olimov</span>
+    <div class="intro-main">
+        <div class="intro-main-left">
+            <div class="intro-main-left-info">
+                <h1>Farzandingiz uchun kerak bo`lgan hamma narsa</h1>
+                <p>Uslub va qulaylikni hisobga olgan holda yaratilgan yangi va mashhur bolalar kiyimlari kolleksiyamiz bilan tanishing.</p>
+                <a href="#products-section">Hozir xarid qiling</a>
+            </div>
+        </div>
+        <div class="intro-main-right">
+            <div class="intro-main-right-top">
+                <h3 class="intro-heading_font">Paxta mato</h3>
+                <p>Bolalar salomatligi uchun xavfsiz</p>
+            </div>
+            <div class="intro-main-right-bottom">
+                <div class="intro-main-right-bottom-info">
+                    <h4  class="intro-heading_font">Yangi kolleksiya</h4>
+                    <h3  class="intro-heading_font">KiddyShoppy</h3>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="test">
-        <h1 style="color: black;">Test</h1>
+
+    <div class="animation-text-section">
+        <div class="animation-text-section-top">
+            <p class="animation_text ">Farzandingizga nafaqat chiroyli, balki qulay va sog‘lom kiyim tanlang — KiddyShoppy bilan har bir detal muhim.   Farzandingizga nafaqat chiroyli, balki qulay va sog‘lom kiyim tanlang — KiddyShoppy bilan har bir detal muhim.</p>
+        </div>
+        <div class="animation-text-section-bottom">
+            <p class="animation_text ">Bizning mahsulotlarimiz bolangiz salomatligi uchun xavfsiz, sifatli paxta matolardan tayyorlangan zamonaviy dizaynga ega.    Bizning mahsulotlarimiz bolangiz salomatligi uchun xavfsiz, sifatli paxta matolardan tayyorlangan zamonaviy dizaynga ega.</p>
+        </div>
     </div>
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="logos">
     <div class="logos-slide">
         <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
@@ -251,7 +435,7 @@
 
 
 
-<div class="products">
+<div id="products-section" class="products">
     {% for kiyim in kiyim %}
     <div class="product_card">
         <a href="{% url 'detail' kiyim.id %}">
@@ -278,6 +462,16 @@
     </div>
     {% endfor %}
 </div>
+
+
+
+
+<!-- <div class="my-logo">
+    <img src="/static/img/my-logo.svg" alt="logo" width="80">
+    <span>Made by I.Olimov</span>
+</div> -->
+
+
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
 
 <script>
