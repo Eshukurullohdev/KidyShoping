@@ -46,7 +46,7 @@
 
     }
     .intro-main-left {
-        background-image: url(/static/img/intro-main-1.svg);
+        background-image: url(/static/img/intro-main-1.webp);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: 50%;
@@ -83,7 +83,7 @@
 
 
     .intro-main-right-top {
-        background-image: url(/static/img/intro-main-2.svg);
+        background-image: url(/static/img/intro-main-2.webp);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: 50%;
@@ -101,7 +101,7 @@
     }
 
     .intro-main-right-bottom {
-        background-image: url(/static/img/intro-main-3.svg);
+        background-image: url(/static/img/intro-main-3.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: 50%;
@@ -119,7 +119,7 @@
 
 
     .animation-text-section {
-        background-image: url(/static/img/animation-text.jpg);
+        background-image: url(/static/img/animation-text.webp);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: 50%;
@@ -132,10 +132,10 @@
 
     .animation-text-section-top {
         position: absolute;
-        top: 311px;
+        bottom: -67px;
         left: 0;
         z-index: 2;
-        transform: rotate(5deg) scale(1.2);
+        transform: rotate(4deg) scale(1.2);
         background-color: #cc1f50;
         color: #d3d5e5;
     }
@@ -254,6 +254,7 @@
     .logos {
         position: relative;
         overflow: hidden;
+        display: flex;
         white-space: nowrap;
         padding: 20px 0;
     }
@@ -285,10 +286,9 @@
     }
 
     .logos-slide {
-        display: inline-block;
-        animation: 30s scroll infinite linear;
+        display: flex;
+        animation: 30s scroll infinite linear alternate;
     }
-
     .logos-slide img {
         object-fit: contain;
         height: 50px;
@@ -421,14 +421,22 @@
 
 <div class="logos">
     <div class="logos-slide">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
+        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
+        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
+        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
+        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
+        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
+        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
+        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
+        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
+        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
+        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
+        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
+        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
+        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
+        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
+        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
+        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
     </div>
 </div>
 
@@ -440,7 +448,7 @@
     <div class="product_card">
         <a href="{% url 'detail' kiyim.id %}">
             <div class="product_card_info">
-                <img src="{{ kiyim.main_img.url }}" alt="baby-clothes" width="310" height="400">
+                <img src="{{ kiyim.main_img.url }}" alt="baby-clothes" width="310" height="400" loading="lazy">
                 <h4>KiddyShoppy</h4>
                 <h3>{{ kiyim.tavsifi }}</h3>
                 <div class="product_card_info_price">
