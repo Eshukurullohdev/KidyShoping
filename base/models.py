@@ -62,7 +62,6 @@ class Main_Kiyim(models.Model):
     ]   
     pre_balandligi = models.CharField("PRE balandligi", max_length=50,     choices=BALAND_CHOICES, blank=True, null=True)
     pre_kilogrami = models.CharField("PRE kilogrami", max_length=50, choices=KG_CHOICES,    blank=True, null=True)
-
     nb_balandligi = models.CharField("NB balandligi", max_length=50, choices=BALAND_CHOICES,    blank=True, null=True)
     nb_kilogrami = models.CharField("NB kilogrami", max_length=50, choices=KG_CHOICES,  blank=True, null=True)
 
@@ -71,7 +70,6 @@ class Main_Kiyim(models.Model):
 
     m6_balandligi = models.CharField("6M balandligi", max_length=50, choices=BALAND_CHOICES,    blank=True, null=True)
     m6_kilogrami = models.CharField("6M kilogrami", max_length=50, choices=KG_CHOICES,  blank=True, null=True)
-
     m9_balandligi = models.CharField("9M balandligi", max_length=50, choices=BALAND_CHOICES,    blank=True, null=True)
     m9_kilogrami = models.CharField("9M kilogrami", max_length=50, choices=KG_CHOICES,  blank=True, null=True)
     # ... boshqa barcha fieldlar xuddi oldingidek ...
