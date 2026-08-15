@@ -1,39 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Panel</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
   <div class="flex min-h-screen">
-    <aside class="w-64 bg-gradient-to-b from-blue-900 to-blue-700 text-black p-6 space-y-6 shadow-xl">
-      <h1 class="text-2xl font-extrabold tracking-wide">🛠️ Admin Panel</h1>
-      <nav class="space-y-2">
-        <a href="{% url 'controlpanel:dashboard' %}" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-600 transition-all">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h4l3 8 4-16 3 8h4" /></svg>
-          <span>Boshqaruv</span>
-        </a>
-        <a href="{% url 'controlpanel:product_add' %}" class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-600 transition-all">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
-          <span>Yangi Kiyim</span>
-        </a>
-        <a href="{% url 'controlpanel:logout' %}" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 transition-all">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7" /></svg>
+    
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gradient-to-b from-blue-900 to-blue-800 text-white p-6 flex flex-col justify-between shadow-xl">
+      <div class="space-y-8">
+        <!-- Logo / Title -->
+        <div class="flex items-center gap-3 px-2">
+          <span class="p-2 bg-blue-700/50 rounded-xl text-xl">🛠️</span>
+          <h1 class="text-xl font-black tracking-wide">Admin Panel</h1>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="space-y-1.5">
+          <a href="{% url 'controlpanel:dashboard' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm hover:bg-blue-700/50 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h4l3 8 4-16 3 8h4" />
+            </svg>
+            <span>Boshqaruv</span>
+          </a>
+          
+          <a href="{% url 'controlpanel:product_add' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm hover:bg-blue-700/50 transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            <span>Yangi Kiyim</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Bottom Logout -->
+      <div class="pt-6 border-t border-blue-800">
+        <a href="{% url 'controlpanel:logout' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm bg-red-600/20 hover:bg-red-600 text-red-200 hover:text-white transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7" />
+          </svg>
           <span>Chiqish</span>
         </a>
-      </nav>
+      </div>
     </aside>
 
     <!-- Main content -->
-    <main class="flex-1 p-8">
-      {% block content %}{% endblock %}
+    <main class="flex-1 overflow-x-hidden p-8">
+      <div class="max-w-7xl mx-auto">
+        {% block content %}{% endblock %}
+      </div>
     </main>
-  </div>
 
-  <div class="p-6 max-w-4xl mx-auto">
-    {% block content %}{% endblock %}
   </div>
 </body>
 </html>

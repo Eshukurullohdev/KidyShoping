@@ -1,488 +1,179 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Coiny&family=League+Spartan:wght@100..900&family=Orbitron:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        scroll-behavior: smooth;
-    }
-
-    body {
-        font-family: "Poppins", sans-serif;
-        line-height: 1.6;
-    }
-    h1,
-    .intro-heading_font {
-        font-family: "Coiny", system-ui;
-    }
-    h2,
-    h4 {
-        font-family: "League Spartan", serif;
-    }
-    .animation_text {
-        font-family: "Orbitron", sans-serif;
-        white-space: nowrap;
-        font-weight: 900;
-        letter-spacing: 2px;
-    }
-
-    a {
-        display: inline-block;
-        text-decoration: none;
-        color: #000;
-    }
-    /* intro-start-of-section */
-    #intro {
-        padding: 20px 0;
-    }
-    .intro-main {
-        width: 1291px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-
-    }
-    .intro-main-left {
-        background-image: url(/static/img/intro-main-1.webp);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: 50%;
-        width: 871px;
-        height: 566px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        padding: 40px;
-    }
-
-    .intro-main-left-info {
-        width: 417px;
-    }
-    .intro-main-left-info h1 {
-        font-size: 32px;
-        line-height: 120%;
-        color: #cc8799;
-    }
-
-    .intro-main-left-info p {
-        margin: 17px 0 30px;
-    }
-    .intro-main-left-info a {
-        background-color: #cc8799;
-        color: #fff;
-        padding: 17px 58px;
-        display: inline-block;
-        border-radius: 50px;
-    }
-    .intro-main-left-info a:hover {
-        background-color: #e36f8e; 
-    }
-
-
-    .intro-main-right-top {
-        background-image: url(/static/img/intro-main-2.webp);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: 50%;
-        width: 400px;
-        height: 274px;
-        padding: 53px;
-        text-align: center;
-        margin-bottom: 18px;
-    }
-    .intro-heading_font {
-        font-size: 35px;
-        line-height: 100%;
-        color: #cc8799;
-        margin-bottom: 10px;
-    }
-
-    .intro-main-right-bottom {
-        background-image: url(/static/img/intro-main-3.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: 50%;
-        width: 400px;
-        height: 274px;
-        padding: 15px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-    }
-    .intro-main-right-bottom h4 {
-        font-size: 18px;
-        color: #575454;
-    }
-
-
+    /* Maxsus animatsiyalar va stillar */
     .animation-text-section {
-        background-image: url(/static/img/animation-text.webp);
+        background-image: url('{% static "img/animation-text.webp" %}');
         background-repeat: no-repeat;
         background-size: cover;
-        background-position: 50%;
-        height: 700px;
-        margin: 70px 0;
-        overflow: hidden;
-        text-transform: uppercase;
-        position: relative;
-    }
-
-    .animation-text-section-top {
-        position: absolute;
-        bottom: -67px;
-        left: 0;
-        z-index: 2;
-        transform: rotate(4deg) scale(1.2);
-        background-color: #cc1f50;
-        color: #d3d5e5;
-    }
-    .animation-text-section-top p {
-        font-size: 70px;
-        animation: text-1 80s linear infinite;
+        background-position: center;
     }
     @keyframes text-1 {
-        
-        100% {
-            transform: translateX(-100%);
-        }
-    }
-    .animation-text-section-bottom {
-        position: absolute;
-        left: 0;
-        transform: rotate(-5deg) scale(1.2);
-        background-color: #9eec5a;
-        color: #050508;
-    }
-    .animation-text-section-bottom  p {
-        font-size: 50px;
-        animation: text-2 90s linear infinite;
+        100% { transform: translateX(-100%); }
     }
     @keyframes text-2 {
-        
-        100% {
-            transform: translateX(-100%);
-        }
+        100% { transform: translateX(-100%); }
     }
-
-
-
-
-    /* .my-logo {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
+    .animate-text-1 {
+        animation: text-1 80s linear infinite;
+    }
+    .animate-text-2 {
+        animation: text-2 90s linear infinite;
+    }
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+    }
+    .logos-slide {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 280px;
-        height: 70px;
-        background-color: #000;
+        animation: scroll 30s linear infinite;
     }
-
-    .my-logo img {
-        position: absolute;
-        filter: drop-shadow(0 0 17px orange);
-    }
-
-    .my-logo span {
-        position: absolute;
-        right: 30px;
-        background: linear-gradient(90deg, #f58041, #ac795c 25.6%, #887064 41.58%, #716a69 56.98%, #61656b 69.44%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 500;
-        font-size: 20px;
-    } */
-    
-    /* intro-end-of-section */
-    .products {
-        width: 1291px;
-        margin: 0 auto;
-        padding-block: 60px;
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        grid-row-gap: 24px;
-        grid-column-gap: 16px;
-    }
-
-    .product_card {
-        width: 310px;
-    }
-
-    .product_card_info img {
-        object-fit: cover;
-        object-position: 50%;
-        border-radius: 10px;
-        width: 310px;
-        height: 380px;
-    }
-
-    .product_card_info h4 {
-        font-size: 12px;
-        font-weight: 500;
-        line-height: 1.2;
-        color: #757575;
-        margin: 8px 0 5px;
-    }
-
-    .product_card_info h3 {
-        font-size: 14px;
-        font-weight: inherit;
-        line-height: 1.2;
-        min-height: 42px;
-    }
-
-    .product_card_info_price {
-        display: flex;
-        align-items: center;
-    }
-
-    .new_price {
-        font-weight: 700;
-        margin-inline-end: 5px;
-    }
-
-    .old_price {
-        font-size: 12px;
-        color: #757575;
-        text-decoration: line-through;
-    }
-
-    .logos {
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        white-space: nowrap;
-        padding: 20px 0;
-    }
-
-    .logos::before {
-        position: absolute;
-        content: '';
-        top: 0;
-        left: 0;
-        width: 250px;
-        height: 100%;
-        z-index: 2;
-        background: linear-gradient(to left, rgba(255, 255, 255, 0), #fff);
-    }
-
-    .logos::after {
-        position: absolute;
-        content: '';
-        top: 0;
-        right: 0;
-        width: 250px;
-        height: 100%;
-        z-index: 2;
-        background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff);
-    }
-
     .logos:hover .logos-slide {
         animation-play-state: paused;
     }
-
-    .logos-slide {
-        display: flex;
-        animation: 30s scroll infinite linear alternate;
-    }
-    .logos-slide img {
-        object-fit: contain;
-        height: 50px;
-        margin: 0 40px;
-    }
-
-    @keyframes scroll {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(-100%);
-        }
-    }
-
-    .logos:nth-child(2) {
-        position: absolute;
-        top: 20px;
-        left: 100%;
-    }
-
-    .animate-slide {
-        transition: all 0.3s ease;
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-
-
-    @media only screen and (max-width: 575px) {
-        #intro {
-            padding: 23px 0;
-        }
-        .intro-main {
-            flex-direction: column;
-            width: 94%;
-            margin: 0 auto;
-            
-        }
-        .intro-main-left {
-            padding: 10px;
-            width: 100%;
-        }
-        .intro-main-left-info {
-            width: 286px;
-        }   
-        .intro-main-left-info h1 {
-            font-size: 22px;
-        }
-        .intro-main-left-info p {
-            margin: 10px 0 20px;
-            font-size: 14px;
-        }
-        .intro-main-left-info a {
-            padding: 10px 35px;
-            font-size: 14px;
-        }
-        .intro-main-right-top {
-            margin: 18px 0;
-            width: 100%;
-        }
-        .intro-main-right-bottom {
-            width: 100%;
-            text-align: center;
-            justify-content: center;
-        }
-    }
 </style>
+
+<!-- Xabar (Xabarnoma) modal -->
 {% if messages %}
-<div id="successModal"
-    class="fixed top-0 right-[37.7rem] z-50 bg-green-500 text-white px-6 py-4 rounded shadow-lg animate-slide">
+<div id="successModal" class="fixed top-5 right-5 z-50 bg-emerald-500 text-white px-6 py-3 rounded-xl shadow-xl transition-all duration-300">
     {% for message in messages %}
-    <p class="font-medium">{{ message }}</p>
+    <p class="font-medium text-sm">{{ message }}</p>
     {% endfor %}
 </div>
 {% endif %}
-<section id="intro">
-    <div class="intro-main">
-        <div class="intro-main-left">
-            <div class="intro-main-left-info">
-                <h1>Farzandingiz uchun kerak bo`lgan hamma narsa</h1>
-                <p>Uslub va qulaylikni hisobga olgan holda yaratilgan yangi va mashhur bolalar kiyimlari kolleksiyamiz bilan tanishing.</p>
-                <a href="#products-section">Hozir xarid qiling</a>
-            </div>
-        </div>
-        <div class="intro-main-right">
-            <div class="intro-main-right-top">
-                <h3 class="intro-heading_font">Paxta mato</h3>
-                <p>Bolalar salomatligi uchun xavfsiz</p>
-            </div>
-            <div class="intro-main-right-bottom">
-                <div class="intro-main-right-bottom-info">
-                    <h4  class="intro-heading_font">Yangi kolleksiya</h4>
-                    <h3  class="intro-heading_font">KiddyShoppy</h3>
+
+<!-- Intro Qismi -->
+<section id="intro" class="py-6 sm:py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            
+            <!-- Chap katta banner -->
+            <div class="lg:col-span-8 rounded-3xl overflow-hidden relative min-h-[450px] sm:min-h-[520px] flex items-center justify-end p-6 sm:p-12 shadow-md" style="background-image: url('{% static "img/intro-main-1.webp" %}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-white/90 lg:to-transparent"></div>
+                <div class="relative z-10 max-w-md w-full text-right lg:text-left">
+                    <h1 class="text-3xl sm:text-4xl font-black text-brand-700 leading-tight font-['Coiny'] mb-4">
+                        Farzandingiz uchun kerak bo`lgan hamma narsa
+                    </h1>
+                    <p class="text-gray-600 text-sm sm:text-base mb-6 font-normal">
+                        Uslub va qulaylikni hisobga olgan holda yaratilgan yangi va mashhur bolalar kiyimlari kolleksiyamiz bilan tanishing.
+                    </p>
+                    <a href="#products-section" class="inline-block bg-brand-500 hover:bg-brand-600 text-white font-medium px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-0.5">
+                        Hozir xarid qiling
+                    </a>
                 </div>
             </div>
+
+            <!-- O'ng kichik bannerlar -->
+            <div class="lg:col-span-4 flex flex-col gap-6">
+                <!-- Top card -->
+                <div class="rounded-3xl p-8 text-center flex flex-col justify-center items-center shadow-md min-h-[240px] relative overflow-hidden" style="background-image: url('{% static "img/intro-main-2.webp" %}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+                    <div class="absolute inset-0 bg-white/70 backdrop-blur-[2px]"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-3xl font-['Coiny'] text-brand-700 mb-2">Paxta mato</h3>
+                        <p class="text-gray-700 text-sm font-medium">Bolalar salomatligi uchun xavfsiz</p>
+                    </div>
+                </div>
+
+                <!-- Bottom card -->
+                <div class="rounded-3xl p-6 flex items-center justify-end shadow-md min-h-[240px] relative overflow-hidden" style="background-image: url('{% static "img/intro-main-3.jpg" %}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+                    <div class="absolute inset-0 bg-black/20"></div>
+                    <div class="relative z-10 text-right bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-sm">
+                        <h4 class="font-['League_Spartan'] text-base font-bold text-gray-700">Yangi kolleksiya</h4>
+                        <h3 class="font-['Coiny'] text-2xl text-brand-700 mt-1">KiddyShoppy</h3>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
-
-    <div class="animation-text-section">
-        <div class="animation-text-section-top">
-            <p class="animation_text ">Farzandingizga nafaqat chiroyli, balki qulay va sog‘lom kiyim tanlang — KiddyShoppy bilan har bir detal muhim.   Farzandingizga nafaqat chiroyli, balki qulay va sog‘lom kiyim tanlang — KiddyShoppy bilan har bir detal muhim.</p>
+    <!-- Animatsiyali matnli qism -->
+    <div class="animation-text-section h-[400px] sm:h-[550px] my-12 relative overflow-hidden flex items-center">
+        <div class="absolute inset-0 bg-black/10"></div>
+        
+        <!-- Yuqori yuguruvchi matn -->
+        <div class="absolute bottom-1/3 left-0 w-full rotate-3 scale-110 bg-[#cc1f50] text-[#d3d5e5] py-3 shadow-2xl overflow-hidden">
+            <p class="animation_text text-3xl sm:text-5xl font-black whitespace-nowrap animate-text-1">
+                Farzandingizga nafaqat chiroyli, balki qulay va sog‘lom kiyim tanlang — KiddyShoppy bilan har bir detal muhim. &nbsp;&nbsp;&nbsp; Farzandingizga nafaqat chiroyli, balki qulay va sog‘lom kiyim tanlang — KiddyShoppy bilan har bir detal muhim.
+            </p>
         </div>
-        <div class="animation-text-section-bottom">
-            <p class="animation_text ">Bizning mahsulotlarimiz bolangiz salomatligi uchun xavfsiz, sifatli paxta matolardan tayyorlangan zamonaviy dizaynga ega.    Bizning mahsulotlarimiz bolangiz salomatligi uchun xavfsiz, sifatli paxta matolardan tayyorlangan zamonaviy dizaynga ega.</p>
+
+        <!-- Pastki yuguruvchi matn -->
+        <div class="absolute top-1/2 left-0 w-full -rotate-3 scale-110 bg-[#9eec5a] text-gray-900 py-3 shadow-2xl overflow-hidden">
+            <p class="animation_text text-2xl sm:text-4xl font-black whitespace-nowrap animate-text-2">
+                Bizning mahsulotlarimiz bolangiz salomatligi uchun xavfsiz, sifatli paxta matolardan tayyorlangan zamonaviy dizaynga ega. &nbsp;&nbsp;&nbsp; Bizning mahsulotlarimiz bolangiz salomatligi uchun xavfsiz, sifatli paxta matolardan tayyorlangan zamonaviy dizaynga ega.
+            </p>
         </div>
     </div>
 </section>
 
+<!-- Brendlar slayderi -->
+<div class="logos relative overflow-hidden flex whitespace-nowrap py-6 max-w-7xl mx-auto my-8">
+    <div class="absolute inset-y-0 left-0 w-32 z-10 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none"></div>
+    <div class="absolute inset-y-0 right-0 w-32 z-10 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none"></div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="logos">
-    <div class="logos-slide">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6" loading="lazy">
+    <div class="logos-slide flex gap-12 items-center">
+        {% for i in "12345678" %}
+        <img src="{% static 'img/pink.png' %}" alt="logo" class="h-12 object-contain mx-6 opacity-70 hover:opacity-100 transition-opacity" loading="lazy">
+        {% endfor %}
+    </div>
+    <div class="logos-slide flex gap-12 items-center" aria-hidden="true">
+        {% for i in "12345678" %}
+        <img src="{% static 'img/pink.png' %}" alt="logo" class="h-12 object-contain mx-6 opacity-70 hover:opacity-100 transition-opacity" loading="lazy">
+        {% endfor %}
     </div>
 </div>
 
+<!-- Mahsulotlar katalogi -->
+<section id="products-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold font-['League_Spartan'] text-gray-900">Mahsulotlarimiz</h2>
+        <p class="text-gray-500 text-sm mt-2">Eng sara va sifatli bolalar kiyimlari</p>
+    </div>
 
-
-
-<div id="products-section" class="products">
-    {% for kiyim in kiyim %}
-    <div class="product_card">
-        <a href="{% url 'detail' kiyim.id %}">
-            <div class="product_card_info">
-                <img src="{{ kiyim.main_img.url }}" alt="baby-clothes" width="310" height="400" loading="lazy">
-                <h4>KiddyShoppy</h4>
-                <h3>{{ kiyim.tavsifi }}</h3>
-                <div class="product_card_info_price">
-                    <p class="new_price">{{ kiyim.narhi }} uzs</p>
-                    {% if kiyim.skidkasi %}
-                    <p class="old_price">{{ kiyim.skidkasi }} uzs </p>
-                    {% else %}
-                    <span></span>
-                    {% endif %}
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {% for kiyim in kiyim %}
+        <div class="bg-white rounded-2xl p-4 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group flex flex-col justify-between">
+            <a href="{% url 'detail' kiyim.id %}" class="block">
+                <!-- Rasm -->
+                <div class="relative overflow-hidden rounded-xl aspect-[4/5] bg-gray-100 mb-4">
+                    <img src="{{ kiyim.main_img.url }}" alt="baby-clothes" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     {% if kiyim.chegirma_foizi > 0 %}
-                    <p style="color: green; font-size: 14px; margin-left: 5px; font-weight: bold;">
-                        Chegirma: {{ kiyim.chegirma_foizi }}%
-                    </p>
+                    <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg shadow-md">
+                        -{{ kiyim.chegirma_foizi }}%
+                    </span>
+                    {% endif %}
+                </div>
 
+                <!-- Ma'lumotlar -->
+                <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">KiddyShoppy</h4>
+                <h3 class="text-sm font-medium text-gray-800 line-clamp-2 min-h-[40px] group-hover:text-brand-600 transition-colors mb-3">
+                    {{ kiyim.tavsifi }}
+                </h3>
+            </a>
+
+            <div class="flex items-center justify-between pt-3 border-t border-gray-100 mt-auto">
+                <div class="flex items-center gap-2">
+                    <span class="text-base font-bold text-gray-900">{{ kiyim.narhi }} uzs</span>
+                    {% if kiyim.skidkasi %}
+                    <span class="text-xs text-gray-400 line-through">{{ kiyim.skidkasi }} uzs</span>
                     {% endif %}
                 </div>
             </div>
-        </a>
+        </div>
+        {% empty %}
+        <div class="col-span-full py-16 text-center text-gray-400">
+            <p class="text-lg">Hozircha kiyimlar mavjud emas.</p>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
+</section>
 
-
-
-
-<!-- <div class="my-logo">
-    <img src="/static/img/my-logo.svg" alt="logo" width="80">
-    <span>Made by I.Olimov</span>
-</div> -->
-
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-
+<!-- Skriptlar -->
 <script>
+    // Xabar modalini o'chirish
     setTimeout(() => {
         const modal = document.getElementById('successModal');
         if (modal) {
@@ -490,16 +181,6 @@
             modal.style.transform = 'translateY(-10px)';
             setTimeout(() => modal.remove(), 300);
         }
-    }, 2000);
-    const progressCircle = document.querySelector(".autoplay-progress svg");
-    const progressContent = document.querySelector(".autoplay-progress span");
-
-    const swiperEl = document.querySelector("swiper-container");
-    swiperEl.addEventListener("autoplaytimeleft", (e) => {
-        const [swiper, time, progress] = e.detail;
-        progressCircle.style.setProperty("--progress", 1 - progress);
-        progressContent.textContent = `${Math.ceil(time / 1000)}s`;
-    });
-
+    }, 2500);
 </script>
 {% endblock %}

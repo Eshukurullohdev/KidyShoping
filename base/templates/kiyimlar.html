@@ -1,238 +1,58 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
+<!-- Asosiy mahsulotlar katalogi -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <!-- Sarlavha qismi -->
+    <div class="text-center mb-10">
+        <h2 class="text-3xl font-bold font-['League_Spartan'] text-gray-900">Bolalar kiyimlari</h2>
+        <p class="text-gray-500 text-sm mt-2">Siz va farzandingiz uchun eng sara tanlovlar</p>
+    </div>
 
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Cookie&family=League+Spartan:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: "Poppins", sans-serif;
-        line-height: 1.6;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4 {
-        font-family: "League Spartan", serif;
-    }
-
-    a {
-        display: inline-block;
-        text-decoration: none;
-        color: #000;
-    }
-
-    #intro {
-        position: relative;
-        height: 100vh;
-        text-align: center;
-        color: #fff;
-    }
-
-    .bg {
-        position: absolute;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .my-logo {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 280px;
-        height: 70px;
-        background-color: #000;
-    }
-
-    .my-logo img {
-        position: absolute;
-        filter: drop-shadow(0 0 17px orange);
-    }
-
-    .my-logo span {
-        position: absolute;
-        right: 30px;
-        background: linear-gradient(90deg, #f58041, #ac795c 25.6%, #887064 41.58%, #716a69 56.98%, #61656b 69.44%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 500;
-        font-size: 20px;
-    }
-
-    .intro_info {
-        position: absolute;
-        top: 35%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 1140px;
-    }
-
-    .intro_info h1 {
-        text-transform: uppercase;
-        font-size: 70px;
-        line-height: 1.2;
-        letter-spacing: 2px;
-        text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
-    }
-
-    .intro_info hr {
-        width: 100px;
-        height: 4px;
-        background-color: #fff;
-        border: none;
-        margin: 20px auto;
-    }
-
-    .intro_info p {
-        font-size: 25px;
-        text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
-    }
-
-    .products {
-        width: 1291px;
-        margin: 0 auto;
-        padding-block: 60px;
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        grid-row-gap: 24px;
-        grid-column-gap: 16px;
-    }
-
-    .product_card {
-        width: 310px;
-    }
-
-    .product_card_info img {
-        object-fit: cover;
-        object-position: 50%;
-        border-radius: 10px;
-    }
-
-    .product_card_info h4 {
-        font-size: 12px;
-        font-weight: 500;
-        line-height: 1.2;
-        color: #757575;
-        margin: 8px 0 5px;
-    }
-
-    .product_card_info h3 {
-        font-size: 14px;
-        font-weight: inherit;
-        line-height: 1.2;
-        min-height: 42px;
-    }
-
-    .product_card_info_price {
-        display: flex;
-        align-items: center;
-    }
-
-    .new_price {
-        font-weight: 700;
-        margin-inline-end: 5px;
-    }
-
-    .old_price {
-        font-size: 12px;
-        color: #757575;
-        text-decoration: line-through;
-    }
-
-    .logos {
-        position: relative;
-        overflow: hidden;
-        white-space: nowrap;
-        padding: 20px 0;
-    }
-
-    .logos::before {
-        position: absolute;
-        content: '';
-        top: 0;
-        left: 0;
-        width: 250px;
-        height: 100%;
-        z-index: 2;
-        background: linear-gradient(to left, rgba(255, 255, 255, 0), #fff);
-    }
-
-    .logos::after {
-        position: absolute;
-        content: '';
-        top: 0;
-        right: 0;
-        width: 250px;
-        height: 100%;
-        z-index: 2;
-        background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff);
-    }
-
-    .logos:hover .logos-slide {
-        animation-play-state: paused;
-    }
-
-    .logos-slide {
-        display: inline-block;
-        animation: 30s scroll infinite linear;
-    }
-
-    .logos-slide img {
-        object-fit: contain;
-        height: 50px;
-        margin: 0 40px;
-    }
-
-    @keyframes scroll {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(-100%);
-        }
-    }
-
-    .logos:nth-child(2) {
-        position: absolute;
-        top: 20px;
-        left: 100%;
-    }
-</style>
-
-<body>
-
-    <div class="products">
-
+    <!-- Mahsulotlar grid sistemasi -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {% for kiyim in kiyimlar %}
-        <div class="product_card">
-            <a href="{% url 'detail' kiyim.id %}">
-                <div class="product_card_info">
-                    <img src="{{ kiyim.main_img.url }}" alt="baby-clothes" width="310" height="400">
-                    <h4>KiddyShoppy</h4>
-                    <h3>{{ kiyim.tavsifi }}</h3>
-                    <div class="product_card_info_price">
-                        <p class="new_price">{{ kiyim.narhi }} so'm</p>
-                        <p class="old_price">{{ kiyim.skidkasi }} so'm</p>
-                    </div>
+        <div class="bg-white rounded-2xl p-4 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group flex flex-col justify-between">
+            <a href="{% url 'detail' kiyim.id %}" class="block">
+                <!-- Rasm bloki -->
+                <div class="relative overflow-hidden rounded-xl aspect-[4/5] bg-gray-100 mb-4">
+                    <img src="{{ kiyim.main_img.url }}" alt="baby-clothes" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                    {% if kiyim.chegirma_foizi > 0 %}
+                    <span class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg shadow-md">
+                        -{{ kiyim.chegirma_foizi }}%
+                    </span>
+                    {% endif %}
                 </div>
+
+                <!-- Brend va Tavsif -->
+                <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">KiddyShoppy</h4>
+                <h3 class="text-sm font-medium text-gray-800 line-clamp-2 min-h-[40px] group-hover:text-brand-600 transition-colors mb-3">
+                    {{ kiyim.tavsifi }}
+                </h3>
             </a>
+
+            <!-- Narxlar -->
+            <div class="flex items-center justify-between pt-3 border-t border-gray-100 mt-auto">
+                <div class="flex items-center gap-2">
+                    <span class="text-base font-bold text-gray-900">{{ kiyim.narhi }} so'm</span>
+                    {% if kiyim.skidkasi %}
+                    <span class="text-xs text-gray-400 line-through">{{ kiyim.skidkasi }} so'm</span>
+                    {% endif %}
+                </div>
+            </div>
         </div>
         {% empty %}
-        <p>Bu toifada kiyimlar topilmadi.</p>
+        <!-- Mahsulot topilmagan holat -->
+        <div class="col-span-full py-16 text-center text-gray-400">
+            <svg class="mx-auto h-12 w-12 text-gray-300 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+            </svg>
+            <p class="text-lg font-medium text-gray-500">Bu toifada kiyimlar topilmadi.</p>
+        </div>
         {% endfor %}
-    
     </div>
-</body>
+
+</section>
 {% endblock %}

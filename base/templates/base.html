@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+<html lang="uz" class="scroll-smooth">
 <head>
     <!-- Asosiy sozlamalar -->
     <meta charset="UTF-8">
@@ -15,35 +15,70 @@
     <meta property="og:url" content="https://kiddyshoppy.uz/" />
     <meta property="og:type" content="website" />
 
-    <!-- Twitter Card (Twitter va Telegram uchun) -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="KiddyShoppy">
     <meta name="twitter:description" content="Farzandingiz uchun zamonaviy va qulay kiyimlar – KiddyShoppyda!">
     <meta name="twitter:image" content="https://postimg.cc/0b7KTPF8">
+
     <!-- Apple mobil qurilmalar uchun -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-    <title>KiddyShoppy – Har bir libosda mehr</title>
-    <!-- fontni kechiktirish -->
-    <!-- Google Fonts -->
+    <title>{% block title %}KiddyShoppy – Har bir libosda mehr{% endblock %}</title>
+
+    <!-- Google Fonts (Outfit / Poppins) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- JSDelivr -->
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Outfit', 'sans-serif'],
+            },
+            colors: {
+              brand: {
+                50: '#fdf2f4',
+                100: '#fbe8ec',
+                500: '#cc8799',
+                600: '#b86e82',
+                700: '#9b5569',
+              }
+            }
+          }
+        }
+      }
+    </script>
 
-
-
+    <!-- Font Awesome & SwiperJS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="icon" href="/static/img/icon-logo-1.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/icon-logo-1.png' %}">
+
+    {% block extra_head %}{% endblock %}
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen flex flex-col selection:bg-pink-200 selection:text-pink-900">
+
+    <!-- Navigatsiya -->
     {% include "navigation.html" %}
-    {% block content %}
-    
-    {% endblock %}
+
+    <!-- Asosiy kontent qismi -->
+    <main class="flex-grow">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
     {% include "footer.html" %}
+
+    {% block extra_js %}{% endblock %}
 </body>
 </html>

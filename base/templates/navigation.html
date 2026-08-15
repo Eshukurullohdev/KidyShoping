@@ -1,116 +1,56 @@
 {% load static %}
+<!-- Tailwind CDN (agar base.html da bo'lmasa ishlaydi) -->
 <script src="https://cdn.tailwindcss.com"></script>
-<style>
-    nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 1140px;
-        padding: 10px 0;
-        margin: 0 auto;
-    }
 
-    .nav_left {
-        display: flex;
-        align-items: center;
-    }
-
-    .logo img {
-        width: 170px;
-    }
-
-    nav ul {
-        display: flex;
-        list-style: none;
-    }
-
-    nav ul li {
-        margin-right: 5px;
-    }
-
-    nav ul li a {
-        position: relative;
-        padding: 5px 15px;
-    }
-
-    nav ul li a::before {
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%) scaleX(0);
-        content: '';
-        width: 0%;
-        height: 2px;
-        background-color: crimson;
-        transition: 1s ease;
-    }
-
-    nav ul li a:hover:before {
-        width: 100%;
-        transform: translateX(-50%) scaleX(1);
-        transition: 1s ease;
-    }
-
-    .log {
-        position: relative;
-        padding: 10px 40px;
-        border: 2px solid #000
-    }
-
-    .log::before {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        z-index: -1;
-        transform: translateX(-50%) scaleX(0);
-        content: '';
-        width: 0%;
-        height: 100%;
-        background-color: crimson;
-        transition: 1s all ease;
-    }
-
-    .log:hover::before {
-        width: 100%;
-        transform: translateX(-50%) scaleX(1);
-        transition: 1s all ease;
-    }
-
-    .log i {
-        margin-left: 5px;
-    }
-
-    .example {
-        height: 100vh;
-        border: none;
-    }
-
-    a {
-        display: inline-block;
-        text-decoration: none;
-        color: #000;
-    }
-</style>
-<nav>
-    <a class="logo" href="/">
-        <img src="/static/img/pink.png" alt="logo" width="170" height="76.6">
-    </a>
-    <ul>
-        <li><a href="/">Bosh sahifa</a></li>
-        <li><a href="{% url 'jins_filter' 'ogil' %}">O'g'il bolalar</a></li>
-        <li><a href="{% url 'jins_filter' 'qiz' %}">Qiz bolalar</a></li>
-        <li><a href="{% url 'skidkali_kiyimlar' %}">Chegirmalar %</a></li>
-    </ul>
-    <div class="nav_right">
-
-        {% if user.is_authenticated %}
-        <span class="text-green-600 font-medium">👤 Tizimga kirdingiz</span>
+<header class="w-full bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
         
-        {% else %}
-        <a href="{% url 'register' %}" class="log">
-            Login <i class="fa-solid fa-user"></i>
+        <!-- Chap qism: Logotip -->
+        <a class="logo flex-shrink-0" href="/">
+            <img src="{% static 'img/pink.png' %}" alt="logo" class="w-[140px] sm:w-[170px] h-auto object-contain">
         </a>
-        {% endif %}python 
-    </div>
 
-</nav>
+        <!-- O'rta qism: Menyu havolalari -->
+        <nav class="hidden md:flex items-center space-x-1">
+            <ul class="flex items-center space-x-2">
+                <li>
+                    <a href="/" class="relative px-4 py-2 text-gray-700 font-medium transition-colors hover:text-brand-600 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[2px] after:bg-crimson hover:after:w-full after:transition-all after:duration-500">
+                        Bosh sahifa
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'jins_filter' 'ogil' %}" class="relative px-4 py-2 text-gray-700 font-medium transition-colors hover:text-brand-600 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[2px] after:bg-crimson hover:after:w-full after:transition-all after:duration-500">
+                        O'g'il bolalar
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'jins_filter' 'qiz' %}" class="relative px-4 py-2 text-gray-700 font-medium transition-colors hover:text-brand-600 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[2px] after:bg-crimson hover:after:w-full after:transition-all after:duration-500">
+                        Qiz bolalar
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'skidkali_kiyimlar' %}" class="relative px-4 py-2 text-gray-700 font-medium transition-colors hover:text-brand-600 after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[2px] after:bg-crimson hover:after:w-full after:transition-all after:duration-500">
+                        Chegirmalar %
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- O'ng qism: Foydalanuvchi holati / Login -->
+        <div class="nav_right flex items-center">
+            {% if user.is_authenticated %}
+                <span class="text-emerald-600 font-medium text-sm sm:text-base bg-emerald-50 px-4 py-2 rounded-xl">
+                    👤 Tizimga kirdingiz
+                </span>
+            {% else %}
+                <a href="{% url 'register' %}" class="relative inline-block px-6 py-2.5 border-2 border-black font-medium text-black z-10 overflow-hidden group transition-colors">
+                    <span class="absolute inset-0 bg-crimson w-full h-full scale-x-0 group-hover:scale-x-100 origin-center transition-transform duration-500 ease-in-out -z-10"></span>
+                    <span class="group-hover:text-white transition-colors duration-300 flex items-center gap-2">
+                        Login <i class="fa-solid fa-user"></i>
+                    </span>
+                </a>
+            {% endif %}
+        </div>
+
+    </div>
+</header>

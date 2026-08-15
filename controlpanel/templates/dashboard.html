@@ -1,65 +1,125 @@
 {% extends 'admin_base.html' %}
 {% block content %}
-<div class="flex items-center justify-between mb-6">
-  <h1 class="text-4xl font-extrabold text-blue-700">👶 Kiyimlar Boshqaruvi</h1>
-  <a href="{% url 'controlpanel:product_add' %}" class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-semibold py-2 px-4 rounded shadow-lg">+ Yangi Kiyim</a>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+  <!-- Header qismi -->
+  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+    <div>
+      <h1 class="text-3xl font-black text-gray-900 tracking-tight flex items-center gap-3">
+        <span class="p-2 bg-blue-100 text-blue-600 rounded-xl text-2xl">👶</span> Kiyimlar Boshqaruvi
+      </h1>
+      <p class="text-sm text-gray-500 mt-1">Do'kondagi barcha bolalar kiyimlarini boshqarish va tahrirlash.</p>
+    </div>
+    <a href="{% url 'controlpanel:product_add' %}" class="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white font-medium text-sm py-2.5 px-5 rounded-xl shadow-md hover:shadow-lg transition-all duration-200">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+      Yangi Kiyim qo'shish
+    </a>
+  </div>
+
+  <!-- Asosiy jadval konteyneri -->
+  <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-100 text-left align-middle text-sm">
+        <thead class="bg-gray-50/75 text-gray-500 font-semibold uppercase tracking-wider text-xs">
+          <tr>
+            <th class="px-6 py-4">Asosiy Rasm</th>
+            <th class="px-6 py-4">Tavsifi</th>
+            <th class="px-6 py-4">Jinsi</th>
+            <th class="px-6 py-4">Narxi</th>
+            <th class="px-6 py-4">Chegirma</th>
+            <th class="px-6 py-4">Galereya (Qo'shimcha)</th>
+            <th class="px-6 py-4 text-right">Harakatlar</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 bg-white">
+          {% for product in products %}
+          <tr class="hover:bg-blue-50/40 transition-colors duration-150">
+            <!-- Asosiy rasm -->
+            <td class="px-6 py-4 whitespace-nowrap">
+              {% if product.main_img %}
+                <img src="{{ product.main_img.url }}" alt="main" class="w-14 h-14 object-cover rounded-xl shadow-sm border border-gray-200 hover:scale-105 transition-transform duration-200 cursor-pointer" onclick="openModal('{{ product.main_img.url }}')" title="Kattalashtirish uchun bosing" />
+              {% else %}
+                <div class="w-14 h-14 bg-gray-100 rounded-xl flex items-center justify-center text-gray-400 text-xs italic">Yo'q</div>
+              {% endif %}
+            </td>
+
+            <!-- Tavsif -->
+            <td class="px-6 py-4 font-medium text-gray-900 max-w-xs truncate" title="{{ product.tavsifi }}">
+              {{ product.tavsifi }}
+            </td>
+
+            <!-- Jinsi -->
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-800">
+                {{ product.get_jinsi_display }}
+              </span>
+            </td>
+
+            <!-- Narxi -->
+            <td class="px-6 py-4 whitespace-nowrap font-bold text-emerald-600">
+              {{ product.narhi }} so'm
+            </td>
+
+            <!-- Chegirma -->
+            <td class="px-6 py-4 whitespace-nowrap">
+              {% if product.skidkasi and product.skidkasi > 0 %}
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-red-100 text-red-600">-{{ product.skidkasi }}%</span>
+              {% else %}
+                <span class="text-gray-400">-</span>
+              {% endif %}
+            </td>
+
+            <!-- Qo'shimcha rasmlar (Birinchi va Ikkinchi) -->
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex items-center gap-2">
+                {% if product.birinchi_img %}
+                  <img src="{{ product.birinchi_img.url }}" alt="1-img" class="w-10 h-10 object-cover rounded-lg shadow-sm border cursor-pointer hover:scale-105 transition-transform" onclick="openModal('{{ product.birinchi_img.url }}')" title="1-rasm" />
+                {% endif %}
+                {% if product.ikkinchi_img %}
+                  <img src="{{ product.ikkinchi_img.url }}" alt="2-img" class="w-10 h-10 object-cover rounded-lg shadow-sm border cursor-pointer hover:scale-105 transition-transform" onclick="openModal('{{ product.ikkinchi_img.url }}')" title="2-rasm" />
+                {% endif %}
+                {% if not product.birinchi_img and not product.ikkinchi_img %}
+                  <span class="text-gray-400 italic text-xs">Rasmlar yo'q</span>
+                {% endif %}
+              </div>
+            </td>
+
+            <!-- Harakatlar -->
+            <td class="px-6 py-4 whitespace-nowrap text-right font-medium">
+              <div class="flex items-center justify-end gap-3">
+                <a href="{% url 'controlpanel:product_edit' product.pk %}" class="p-2 text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition-colors" title="Tahrirlash">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                </a>
+                <a href="{% url 'controlpanel:product_delete' product.pk %}" class="p-2 text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors" title="O'chirish" onclick="return confirm('Haqiqatan ham bu kiyimni oʻchirmoqchimisiz?');">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                </a>
+              </div>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="7" class="px-6 py-12 text-center text-gray-400">
+              <div class="flex flex-col items-center justify-center gap-2">
+                <svg class="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
+                <p class="text-base font-medium text-gray-500">Hech qanday kiyim topilmadi.</p>
+                <p class="text-xs text-gray-400">Yangi mahsulot qo'shish uchun yuqoridagi tugmani bosing.</p>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
-<div class="overflow-x-auto bg-white rounded-xl shadow-lg">
-  <table class="min-w-full divide-y divide-gray-200 text-sm">
-    <thead class="bg-blue-50">
-      <tr>
-        <th class="px-4 py-3 text-left font-semibold text-gray-600 uppercase">Rasm</th>
-        <th class="px-4 py-3 text-left font-semibold text-gray-600 uppercase">Tavsifi</th>
-        <th class="px-4 py-3 text-left font-semibold text-gray-600 uppercase">Jinsi</th>
-        <th class="px-4 py-3 text-left font-semibold text-gray-600 uppercase">Narhi</th>
-        <th class="px-4 py-3 text-left font-semibold text-gray-600 uppercase">Chegirma (%)</th>
-        <th class="px-4 py-3 text-left font-semibold text-gray-600 uppercase">Rasm 2</th>
-        <th class="px-4 py-3 text-left font-semibold text-gray-600 uppercase">Rasm 3</th>
-        <th class="px-4 py-3 text-left font-semibold text-gray-600 uppercase">Harakatlar</th>
-      </tr>
-    </thead>
-    <tbody class="bg-white divide-y divide-gray-100">
-      {% for product in products %}
-      <tr class="hover:bg-blue-50">
-        <td class="px-4 py-3">
-          {% if product.main_img %}
-            <img src="{{ product.main_img.url }}" alt="main" class="w-16 h-16 object-cover rounded border hover:scale-105 transition-transform duration-200 cursor-pointer" onclick="openModal('{{ product.main_img.url }}')" title="Asosiy rasm" />
-          {% else %}<span class="text-gray-400 italic">-</span>{% endif %}
-        </td>
-        <td class="px-4 py-3 text-gray-900">{{ product.tavsifi }}</td>
-        <td class="px-4 py-3 text-gray-700">{{ product.get_jinsi_display }}</td>
-        <td class="px-4 py-3 text-green-600 font-bold">{{ product.narhi }} so'm</td>
-        <td class="px-4 py-3 text-red-500">{{ product.skidkasi }}%</td>
-        <td class="px-4 py-3">
-          {% if product.birinchi_img %}
-            <img src="{{ product.birinchi_img.url }}" alt="1-img" class="w-12 h-12 object-cover rounded shadow cursor-pointer" onclick="openModal('{{ product.birinchi_img.url }}')" title="1-rasm" />
-          {% else %}<span class="text-gray-400 italic">-</span>{% endif %}
-        </td>
-        <td class="px-4 py-3">
-          {% if product.ikkinchi_img %}
-            <img src="{{ product.ikkinchi_img.url }}" alt="2-img" class="w-12 h-12 object-cover rounded shadow cursor-pointer" onclick="openModal('{{ product.ikkinchi_img.url }}')" title="2-rasm" />
-          {% else %}<span class="text-gray-400 italic">-</span>{% endif %}
-        </td>
-        <td class="px-4 py-3 whitespace-nowrap">
-          <a href="{% url 'controlpanel:product_edit' product.pk %}" class="text-indigo-600 hover:underline">Tahrirlash</a>
-          <a href="{% url 'controlpanel:product_delete' product.pk %}" class="text-red-600 hover:underline ml-4">O‘chirish</a>
-        </td>
-      </tr>
-      {% empty %}
-      <tr>
-        <td colspan="8" class="px-6 py-4 text-center text-gray-400">Hech qanday kiyim yo‘q.</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
-
-<!-- Image Modal -->
-<div id="imageModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-  <div class="relative">
-    <img id="modalImage" src="" class="max-w-3xl max-h-[80vh] rounded-xl shadow-xl border-4 border-white">
-    <button onclick="closeModal()" class="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-2">&times;</button>
+<!-- Image Modal (Kattalashtirilgan rasm) -->
+<div id="imageModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 transition-opacity duration-300" onclick="closeModalOnBg(event)">
+  <div class="relative max-w-4xl max-h-[90vh]">
+    <img id="modalImage" src="" class="max-w-full max-h-[85vh] rounded-2xl shadow-2xl border-2 border-white/20 object-contain mx-auto">
+    <button onclick="closeModal()" class="absolute -top-4 -right-4 bg-white/10 hover:bg-white/20 text-white rounded-full p-2.5 backdrop-blur-md transition-all">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+    </button>
   </div>
 </div>
 
@@ -69,9 +129,26 @@ function openModal(url) {
   const img = document.getElementById('modalImage');
   img.src = url;
   modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden'; // Fon skrollanishini to'xtatish
 }
+
 function closeModal() {
-  document.getElementById('imageModal').classList.add('hidden');
+  const modal = document.getElementById('imageModal');
+  modal.classList.add('hidden');
+  document.body.style.overflow = 'auto';
 }
+
+function closeModalOnBg(event) {
+  if (event.target.id === 'imageModal') {
+    closeModal();
+  }
+}
+
+// ESC tugmasi bosilganda modalni yopish
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeModal();
+  }
+});
 </script>
 {% endblock %}
